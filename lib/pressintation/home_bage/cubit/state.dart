@@ -1,11 +1,15 @@
-abstract class MainState {}
-class InitMainState extends MainState{}
-class  RequestAddCardState extends MainState{}
-class  RequestAddFamilyState extends MainState{}
-class  RequestUpdateFamilyState extends MainState{}
-class  RequestUpdateCardState extends MainState{}
-class  ProfileState extends MainState{}
-class  MyProfileState extends MainState{}
-class  EmptyState extends MainState{}
-class  AddAcptedState extends MainState{}
-class  AddRegctedState extends MainState{}
+abstract class ClincsState {}
+class InitMainState extends ClincsState{}
+class  ProfileState extends ClincsState{}
+class  MyProfileState extends ClincsState{}
+class  EmptyState extends ClincsState{}
+class  ClinicLoadinState extends ClincsState{}
+class  ClinicSuccfulState extends ClincsState{}
+
+class  ClinicErrorState extends ClincsState{
+  final String Error;
+
+  ClinicErrorState({required this.Error});
+
+
+}

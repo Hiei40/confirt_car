@@ -1,229 +1,217 @@
+import 'package:comfirt_carr_admin/pressintation/auth/Widgets/AdminTextFormField.dart';
+import 'package:comfirt_carr_admin/pressintation/auth/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/contrrolers.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
-import 'login_check.dart';
+
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit=AuthCubit.get(context);
-    return  Scaffold(
-      body: BlocBuilder<AuthCubit,AuthMainState>(
-          builder: (context,state) {
-            return Row(
+    AuthCubit cubit = AuthCubit.get(context);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    TextEditingController emailController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController passwordController1 = TextEditingController();
+    TextEditingController passwordController2 = TextEditingController();
+    GlobalKey<FormState> formFieldLogin = GlobalKey();
+
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Row(
+          children: [
+            Text(
+              "Comfortcare",
+              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+            ),
+            Text(
+              ".com",
+              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      body: BlocConsumer<AuthCubit, AuthMainState>(
+        listener: (BuildContext context, AuthMainState state) {
+          if (state is SignInStateError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.Error)),
+            );
+          } else if (state is SignUpState) {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (Route<dynamic> route) => false,
+            );
+          }
+        },
+        builder: (context, state) {
+          return Form(
+            key: formFieldLogin,
+            child: ListView(
               children: [
-                Expanded(flex: 1,child:Padding(
-                  padding: const EdgeInsets.only(left: 200.0),
-                  child: Container(
-                    child:const Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 335.0),
-                          child: Column(
-
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Sign up",style: TextStyle(
-                                color: Color(0xFF800f2f),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40,
-                              ),),
-                              Text("panel",style: TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),),
-                            ],
-                          ),
-                        ),
-                        Text(" to admin ",style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40,
-                        ),),
-                      ],
-                    ),
-                  ),
-                ),
-
-                ),
-                Expanded(
-                  flex: 1,
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 200.0,right: 20,left: 20),
+                Column(
+                  children: [
+                    SizedBox(height: 50),
+                    Container(
+                      width: (width < 600) ? 400 : (width < 800) ? 600 : 700,
+                      height: (width < 600) ? 600 : (width < 1200) ? 670 : 700,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const  Padding(
-                            padding:  EdgeInsets.only(bottom: 20.0),
-                            child:  Text("Sign up your account",style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold
-                            ),),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "الانضمام الان",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
+                            width: (width < 600)
+                                ? 400
+                                : (width < 800)
+                                ? 600
+                                : 700,
+                            height: (width < 600)
+                                ? 30
+                                : (width < 1200)
+                                ? 40
+                                : 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextFormField(
-                                style:const TextStyle(
-                                  color: Color(0xFF888888),
-                                ),
-                                decoration: InputDecoration(
-                                  hintText: "user name",
-                                  hintStyle:
-                                  const TextStyle(
-                                    color: Color(0xFF888888),
-                                  ),
-                                  filled: true,
-                                  fillColor:const Color(0xFFFAFAFA), // Change this to the desired background color
-
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white.withOpacity(0)), //
-                                    borderRadius: BorderRadius.circular(12),// Change this to the desired border color
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:const BorderSide(color: Color(0xff888888)),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                controller:Controllers.userNameController ,
-                              ),
-                              const Text("  gmail",style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF888888),
-                              ),),
-                              TextFormField(
-                                style:const TextStyle(
-                                  color: Color(0xFF888888),
-                                ),
-                                controller: Controllers.emailController,
-                                decoration: InputDecoration(
-                                  hintText: "gmail",
-                                  hintStyle:
-                                  const TextStyle(
-                                    color: Color(0xFF888888),
-                                  ),
-                                  filled: true,
-                                  fillColor:const Color(0xFFFAFAFA), // Change this to the desired background color
-
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white.withOpacity(0)), //
-                                    borderRadius: BorderRadius.circular(12),// Change this to the desired border color
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:const BorderSide(color: Color(0xff888888)),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 20,),
-                              const Text("  password",style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF888888),
-                              ),),
-                              TextFormField(
-                                obscureText:cubit.hidePasse,
-                                style:const TextStyle(
-                                  color: Color(0xFF888888),
-                                ),
-
-                                decoration: InputDecoration(
-                                  suffixIcon:IconButton(onPressed: ()async{
-                                    await cubit.hidePass();
-                                  },
-                                    icon: Icon(cubit.hidePasse== true ?Icons.visibility_off :Icons.visibility),),
-                                  filled: true,
-                                  hintText: "password",
-                                  hintStyle:
-                                  const TextStyle(
-                                    color: Color(0xFF888888),
-                                  ),
-                                  fillColor:const Color(0xFFFAFAFA), // Change this to the desired background color
-
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white.withOpacity(0)), //
-                                    borderRadius: BorderRadius.circular(12),// Change this to the desired border color
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:const BorderSide(color: Color(0xff888888)),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                controller:Controllers.passwordController ,
-                              ),
-                              TextFormField(
-                                style:const TextStyle(
-                                  color: Color(0xFF888888),
-                                ),
-                                obscureText:cubit.hidePasse,
-                                decoration: InputDecoration(
-                                  suffixIcon:IconButton(onPressed: ()async{
-                                    await cubit.hidePass();
-                                  },
-                                    icon: Icon(cubit.hidePasse== true ?Icons.visibility_off :Icons.visibility),),
-                                  filled: true,
-
-                                  hintText: "password check",
-                                  hintStyle:
-                                  const TextStyle(
-                                    color: Color(0xFF888888),
-                                  ),
-
-                                  fillColor:const Color(0xFFFAFAFA), // Change this to the desired background color
-
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white.withOpacity(0)), //
-                                    borderRadius: BorderRadius.circular(12),// Change this to the desired border color
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:const BorderSide(color: Color(0xff888888)),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                controller:Controllers.passwordCheckController ,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0,left: 200.0),
-                                child: InkWell(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (_){
-                                      return const LoginCheck();
-                                    }));
-                                    cubit.signUpCubit
-                                      (Controllers.emailController.text,
-                                        Controllers.passwordController.text,
-                                        Controllers.userNameController.text,cubit.userType);
-                                  },
-
-                                  child: Container(
-                                    height: 50,
-                                    width: 300,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF800f2f),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child:const Text("Sign Up",style: TextStyle(
-                                        color: Colors.white
-                                    ),),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          SizedBox(height: 40),
+                          _buildTextField("الاسم", nameController),
+                          SizedBox(height: 20),
+                          _buildTextField("البريد الألكتروني", emailController, email: true),
+                          SizedBox(height: 10),
+                          _buildTextField("كلمه المرور", passwordController1, obscure: true),
+                          SizedBox(height: 10),
+                          _buildTextField("تاكيد كلمه المرور", passwordController2, obscure: true),
+                          SizedBox(height: 20),
+                          _buildSignUpButton(context, cubit, emailController, passwordController1, passwordController2, nameController, formFieldLogin),
+                          SizedBox(height: 30),
+                          _buildLoginRow(context),
                         ],
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
-            );
-          }
+            ),
+          );
+        },
       ),
+    );
+  }
+
+  Widget _buildTextField(String label, TextEditingController controller, {bool email = false, bool obscure = false}) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(width: 25),
+            Text(
+              label,
+              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey),
+            ),
+            SizedBox(width: 25),
+          ],
+        ),
+        SizedBox(height: 10),
+        AdminTextFormField(
+          controller: controller,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "$label Musn't be Empty";
+            } else if (email && !value.contains("@")) {
+              return "Not a Valid Email";
+            } else if (obscure && value.length < 7) {
+              return "Password Must Be More Than 7";
+            }
+            return null;
+          },
+          obscure: obscure,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSignUpButton(
+      BuildContext context,
+      AuthCubit cubit,
+      TextEditingController emailController,
+      TextEditingController passwordController1,
+      TextEditingController passwordController2,
+      TextEditingController nameController,
+      GlobalKey<FormState> formFieldLogin,
+      ) {
+    return InkWell(
+      onTap: () {
+        final isValidForm = formFieldLogin.currentState!.validate();
+        if (isValidForm) {
+          cubit.signUpCubit(emailController.text, passwordController1.text, nameController.text);
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.red,
+        ),
+        alignment: Alignment.center,
+        height: 50,
+        width: MediaQuery.of(context).size.width < 600 ? 250 : 550,
+        child: Text(
+          "تسجيل الحساب",
+          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoginRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(width: 30),
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (Route<dynamic> route) => false,
+            );
+          },
+          child: Text(
+            "تسجيل الدخول",
+            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.blue),
+          ),
+        ),
+        SizedBox(width: 20),
+        Text(
+          "ComfortCare  ",
+          style: TextStyle(fontWeight: FontWeight.w900, color: Colors.grey),
+        ),
+        Text(
+          "مسجل بالفعل في",
+          style: TextStyle(fontWeight: FontWeight.w900, color: Colors.grey),
+        ),
+        SizedBox(width: 25),
+      ],
     );
   }
 }

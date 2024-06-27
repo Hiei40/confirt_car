@@ -5,6 +5,13 @@ class AuthInitState extends AuthMainState {}
 class SignInState extends AuthMainState {}
 
 class SignUpState extends AuthMainState {}
+class LoginSuccful extends AuthMainState {}
+class SignInStateError extends AuthMainState {
+  final String Error;
+
+  SignInStateError({required this.Error});
+
+}
 
 class CreateProfileState extends AuthMainState {}
 
