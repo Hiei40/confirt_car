@@ -14,27 +14,37 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     ClincsCubit cubit = ClincsCubit.get(context);
     cubit.fetchClincData();
-cubit.id;
+    cubit.id;
 
     return Scaffold(
       appBar: AppBar(
         title: Text("HomeScreen"),
       ),
-
       body: BlocBuilder<ClincsCubit, ClincsState>(
         builder: (context, state) {
           return Container(
-            child: ListView.builder(itemCount: cubit.Clinc.length, itemBuilder: (context, index) {
-              Clinics clinics=cubit.Clinc[index];
-              cubit.id;
-print(cubit.id[index]);
-              return ClincsContainer2(
-
-                photoUrl: clinics.photo, ClincName: clinics.name, onTap: () {
-                Navigator.push( context, MaterialPageRoute(builder: (context) =>  Docotors(id: cubit.id[index], Name: clinics.name,)), );
-              }, id: '',
-              );
-            }),
+            child: ListView.builder(
+                itemCount: cubit.Clinc.length,
+                itemBuilder: (context, index) {
+                  Clinics clinics = cubit.Clinc[index];
+                  cubit.id;
+                  print(cubit.id[index]);
+                  return ClincsContainer2(
+                    photoUrl: clinics.photo,
+                    ClincName: clinics.name,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Docotors(
+                                  id: cubit.id[index],
+                                  Name: clinics.name,
+                                )),
+                      );
+                    },
+                    id: '',
+                  );
+                }),
           );
         },
       ),

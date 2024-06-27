@@ -46,6 +46,7 @@ dependencies:
   table_calendar:
   file_picker: ^6.1.1
   firebase_storage: ^11.6.9
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

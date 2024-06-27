@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Const/Colors.dart';
 
 class ClincsContainer2 extends StatefulWidget {
-  final String photoUrl; // corrected parameter name
-  final String ClincName; // corrected parameter name
+  final String photoUrl;
+  final String ClincName;
   final String id;
   final void Function()? onTap;
 
   const ClincsContainer2({
     Key? key,
-    required this.photoUrl, // corrected parameter name
-    required this.ClincName, // corrected parameter name
-
-    required this.onTap, required this.id,
+    required this.photoUrl,
+    required this.ClincName,
+    required this.onTap,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -24,51 +24,101 @@ class ClincsContainer2 extends StatefulWidget {
 class _ClincsContainer2State extends State<ClincsContainer2> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double paddingValue;
+    double borderRadiusValue;
+    double containerWidth;
+    double containerHeight;
+    double imageWidth;
+    double imageHeight;
+    double textFontSize;
+
+    if (screenWidth <= 500) {
+      // Settings for screens up to 500 width
+      paddingValue = 0.04 * screenWidth;
+      borderRadiusValue = 0.05 * screenWidth;
+      containerWidth = 0.9 * screenWidth;
+      containerHeight = 0.2 * screenHeight;
+      imageWidth = 0.3 * screenWidth;
+      imageHeight = 0.15 * screenHeight;
+      textFontSize = 0.05 * screenWidth;
+    } else if (screenWidth <= 800) {
+      // Settings for screens up to 800 width
+      paddingValue = 0.03 * screenWidth;
+      borderRadiusValue = 0.05 * screenWidth;
+      containerWidth = 0.85 * screenWidth;
+      containerHeight = 0.18 * screenHeight;
+      imageWidth = 0.28 * screenWidth;
+      imageHeight = 0.14 * screenHeight;
+      textFontSize = 0.045 * screenWidth;
+    } else if (screenWidth <= 1200) {
+      // Settings for screens up to 1200 width
+      paddingValue = 0.02 * screenWidth;
+      borderRadiusValue = 0.04 * screenWidth;
+      containerWidth = 0.8 * screenWidth;
+      containerHeight = 0.16 * screenHeight;
+      imageWidth = 0.26 * screenWidth;
+      imageHeight = 0.13 * screenHeight;
+      textFontSize = 0.04 * screenWidth;
+    } else if (screenWidth <= 2400) {
+      // Settings for screens up to 2400 width
+      paddingValue = 0.015 * screenWidth;
+      borderRadiusValue = 0.035 * screenWidth;
+      containerWidth = 0.75 * screenWidth;
+      containerHeight = 0.14 * screenHeight;
+      imageWidth = 0.24 * screenWidth;
+      imageHeight = 0.12 * screenHeight;
+      textFontSize = 0.035 * screenWidth;
+    } else {
+      // Default settings for larger screens
+      paddingValue = 0.01 * screenWidth;
+      borderRadiusValue = 0.03 * screenWidth;
+      containerWidth = 0.7 * screenWidth;
+      containerHeight = 0.12 * screenHeight;
+      imageWidth = 0.22 * screenWidth;
+      imageHeight = 0.11 * screenHeight;
+      textFontSize = 0.03 * screenWidth;
+    }
+
     return GestureDetector(
       onTap: widget.onTap,
       child: Padding(
-        padding: EdgeInsets.all(
-            0.0121654501216545 * MediaQuery.of(context).size.width),
+        padding: EdgeInsets.all(paddingValue),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-                0.048661800486618 * MediaQuery.of(context).size.width),
+            borderRadius: BorderRadius.circular(borderRadiusValue),
             color: AppColor.kWhite,
             border: Border.all(
               color: AppColor.KColorcircle2,
             ),
           ),
-          width: 0.8126520681265207 * MediaQuery.of(context).size.width,
-          height: 0.1441753171856978 * MediaQuery.of(context).size.height,
+          width: containerWidth,
+          height: containerHeight,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 0.024330900243309 * MediaQuery.of(context).size.width,
+                width: paddingValue,
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                      0.024330900243309 * MediaQuery.of(context).size.width),
+                  borderRadius: BorderRadius.circular(paddingValue),
                 ),
                 child: Row(
                   children: [
                     Column(
                       children: [
                         SizedBox(
-                          height: 0.0057670126874279 *
-                              MediaQuery.of(context).size.height,
+                          height: 0.006 * screenHeight,
                         ),
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                              0.024330900243309 *
-                                  MediaQuery.of(context).size.width),
+                          borderRadius: BorderRadius.circular(paddingValue),
                           child: Image.network(
                             widget.photoUrl,
-                            width: 0.267639902676399 *
-                                MediaQuery.of(context).size.width,
-                            height: 0.1268742791234141 *
-                                MediaQuery.of(context).size.height,
+                            width: imageWidth,
+                            height: imageHeight,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -78,32 +128,25 @@ class _ClincsContainer2State extends State<ClincsContainer2> {
                 ),
               ),
               SizedBox(
-                width: 0.024330900243309 * MediaQuery.of(context).size.width,
+                width: paddingValue,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height:
-                        0.0115340253748558 * MediaQuery.of(context).size.height,
+                    height: 0.012 * screenHeight,
                   ),
                   Text(
-                    "${widget.ClincName}", // corrected usage
+                    "${widget.ClincName}",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w600,
-                      fontSize: 0.0437956204379562 *
-                          MediaQuery.of(context).size.width,
+                      fontSize: textFontSize,
                       color: AppColor.Doctorcolor,
                     ),
                   ),
                   SizedBox(
-                    height:
-                        MediaQuery.of(context).size.height * 0.0057670126874279,
-                  ),
-                  SizedBox(
-                    height:
-                        0.0057670126874279 * MediaQuery.of(context).size.height,
+                    height: 0.006 * screenHeight,
                   ),
                 ],
               ),

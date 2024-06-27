@@ -2,6 +2,7 @@ import 'package:comfirt_carr_admin/pressintation/Docotors/Cubit/doctors_cubit.da
 import 'package:comfirt_carr_admin/pressintation/Docotors/Model/Booking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class BookingScreen extends StatelessWidget {
   final String Name;
@@ -19,7 +20,7 @@ class BookingScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is CollectionGroupDataLoading) {
             return Center(child: CircularProgressIndicator());
-          }  else {
+          } else {
             if (cubit.Book.isEmpty) {
               return Center(child: Text('No bookings found.'));
             }
@@ -29,8 +30,42 @@ class BookingScreen extends StatelessWidget {
                 Booking booking = cubit.Book[index];
                 print(booking.doctorName!);
                 return ListTile(
-                  title: Text(booking.doctorName!),
-                  subtitle: Text('Doctor: ${booking.doctorName}'),
+                  title: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Customer Name
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Customer Name: ${booking.name!}"),
+                            SizedBox(height: 8), // Adjust spacing as needed
+                          ],
+                        ),
+                      ),
+                      // Customer Phone
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Customer Phone: ${booking.phoneNumber != null && booking.phoneNumber!.isNotEmpty ? booking.phoneNumber! : 'لا يوجد رقم هاتف لهذا العميل'}"),
+                            SizedBox(height: 8), // Adjust spacing as needed
+                          ],
+                        ),
+                      ),
+                      // Doctor Name
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Doctor: ${booking.doctorName}'),
+                            SizedBox(height: 8), // Adjust spacing as needed
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  subtitle: Text("Date: ${DateFormat('EEE, MMM d, yyyy HH:mm').format(booking.Date.toDate())}"),
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

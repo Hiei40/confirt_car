@@ -7,7 +7,7 @@ class Booking {
   String? name;
   int? number;
   String? phoneNumber;
-  Timestamp? Date; // Assuming Timestamp is imported correctly from 'package:cloud_firestore/cloud_firestore.dart'
+  Timestamp Date; // Assuming Timestamp is imported correctly from 'package:cloud_firestore/cloud_firestore.dart'
 
   Booking({
     required this.doctorName,
@@ -15,7 +15,7 @@ class Booking {
     required this.name,
     required this.number,
     required this.phoneNumber,
-    // required this.Date,
+    required this.Date,
   });
 
   factory Booking.fromJson(Map<String, dynamic> json) {
@@ -25,7 +25,7 @@ class Booking {
       name: json['Name'] ?? '',
       number: json['Number'] ?? 0, // Use integer literals directly
       phoneNumber: json['Phonenumber'] ?? '',
-      // Date: json['Date'] ,
+      Date: json['Date'] ,
     );
   }
 
@@ -36,7 +36,7 @@ class Booking {
       'Name': name,
       'Number': number,
       'Phonenumber': phoneNumber,
-      // 'Date':Date,
+      'Date':Date,
     };
   }
 }
