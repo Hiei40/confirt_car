@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "396885867236",
+    "project_id": "comfort-care-web-site",
+    "storage_bucket": "comfort-care-web-site.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396885867236:android:4938db8aaf94982600caf1",
+        "android_client_info": {
+          "package_name": "com.example.confirt_care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDipZ8SMVoM18FeywRyFDlmi41Dq944YEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
