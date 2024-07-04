@@ -1,0 +1,41 @@
+class Aboutusconst {
+  static String salamtakAbout = "Best dermatologist in Egypt\n"
+      "At Beauty Academy, you will not need to search long for the best dermatologist in Egypt who specializes in treating any of the skin problems or those that need beautification because we provide you with a selection of the best doctors in Cairo to treat all skin diseases. The team of dermatologists at Beauty Academy is a group of specialists and consultants, including:\n\n"
+      "The best dermatologist in Cairo";
+
+  static String BeatyAcamdemy = "Looking to gain extensive experience in the field of cosmetology and dermatology?\n"
+      "Searching for a comprehensive cosmetology diploma?\n"
+      "Beauty Academy has made it easy for you! 😍\n\n"
+      "👈🏻 We offer a comprehensive diploma in dermatology, cosmetology, and laser treatments.\n"
+      "👈🏻 It is the best diploma in Egypt and the Middle East that will help doctors and non-doctors alike learn the latest techniques in injections. 💉\n"
+      "👈🏻 It also prepares them to handle challenging and rare cases in the field of cosmetology, including:\n"
+      "✅ Anatomy (face & neck)\n"
+      "✅ Dermatology differential diagnosis for difficult cases\n"
+      "✅ Filler (full face), including skin booster injections\n"
+      "✅ Botox (upper face, gummy smile, hyperhidrosis)\n"
+      "✅ Threads (rejuvenation & lifting)\n"
+      "✅ Mesotherapy (hair, face & lipolysis)\n"
+      "✅ PRP\n"
+      "✅ Microneedling (derma pen & derma roller)\n"
+      "✅ Peeling (cold & chemical)\n"
+      "✅ Laser (hair removal & fractional laser)\n"
+      "✅ HIFU\n"
+      "✅ Plasmage\n"
+      "✅ Scar subcision\n"
+      "✅ Hydrafacial\n"
+      "✅ New techniques in acne treatment\n"
+      "✅ Hair loss treatment (androgenic & non-androgenic alopecia; alopecia areata and diffuse hair loss)\n"
+      "✅ Stretch marks\n"
+      "✅ Cellulite treatment\n"
+      "✅ Lipolysis injection for localized fat\n\n"
+      "👈🏻 We also provide you with certificates accredited by the American Board, the University of Pennsylvania, and the American University of Science in the field of cosmetology.\n"
+      "👈🏻 At the end of the course, you will receive a membership card and registration certificate from the syndicate, certified by the Egyptian Ministry of Foreign Affairs, qualifying you to work abroad.\n"
+      "👈🏻 You'll graduate from the course with comprehensive knowledge in dermatology and cosmetology with Dr. Nehad Fahmy 🧑‍⚕\n"
+      "▪ Dermatology, cosmetology, and laser consultant at Ain Shams University / Fellow at the University of Cambridge\n"
+      "▪ Head of the Dermatology and Cosmetology Department at the American Board in Egypt\n"
+      "▪ Internationally certified lecturer\n\n"
+      "👈🏻 After the course, you'll be able to practically apply everything you learned. 👌\n\n"
+      "📌 Hurry up and register for the course now to secure your spot before it's full! 🔥";
+
+  static String ComfortCare = "Comfort Care Medical Services is the owner of the project \"Modern Salamatak Specialized Clinics\" and is one of the leading companies in the management and operation of specialized clinics. We utilize the latest global equipment and technologies, featuring prominent specialists, doctors, researchers, and nurses in Egypt.";
+}
