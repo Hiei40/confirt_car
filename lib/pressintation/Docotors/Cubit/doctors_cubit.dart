@@ -1,12 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:comfirt_carr_admin/pressintation/Docotors/Model/Booking.dart';
-import 'package:comfirt_carr_admin/pressintation/Docotors/Model/Doctor_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-
+import '../../../Docotors/Model/Booking.dart';
+import '../../../Docotors/Model/Doctor_model.dart';
 part 'doctors_state.dart';
-
 class DoctorsCubit extends Cubit<DoctorsState> {
   DoctorsCubit() : super(DoctorsInitial());
   static DoctorsCubit get(context) => BlocProvider.of(context);
@@ -18,11 +16,9 @@ class DoctorsCubit extends Cubit<DoctorsState> {
   fetchDoctorData(String id) async {
     try {
       emit(DoctorsClincLoading());
-
       // Fetch data from Firestore
       CollectionReference clinicData = FirebaseFirestore.instance.collection("clinics");
       QuerySnapshot doctorsSnapshot = await clinicData.doc(id).collection("doctors").get();
-
       // Clear lists before populating
       doctorList.clear();
       idList.clear();

@@ -1,8 +1,9 @@
-import 'package:comfirt_carr_admin/pressintation/Docotors/Cubit/doctors_cubit.dart';
-import 'package:comfirt_carr_admin/pressintation/Docotors/Model/Booking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+
+import '../../Docotors/Cubit/doctors_cubit.dart';
+import '../../Docotors/Model/Booking.dart';
 
 class BookingScreen extends StatelessWidget {
   final String Name;

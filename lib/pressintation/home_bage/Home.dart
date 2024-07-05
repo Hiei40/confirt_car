@@ -1,10 +1,10 @@
-import 'package:comfirt_carr_admin/pressintation/Docotors/Docotors.dart';
-import 'package:comfirt_carr_admin/pressintation/home_bage/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../Docotors/Docotors.dart';
 import 'Model/Clinc_Model.dart';
 import 'Widgets/ClincsContainer.dart';
+import 'cubit/cubit.dart';
 import 'cubit/state.dart';
 
 class Home extends StatelessWidget {
@@ -15,7 +15,6 @@ class Home extends StatelessWidget {
     ClincsCubit cubit = ClincsCubit.get(context);
     cubit.fetchClincData();
     cubit.id;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("HomeScreen"),
@@ -26,19 +25,18 @@ class Home extends StatelessWidget {
             child: ListView.builder(
                 itemCount: cubit.Clinc.length,
                 itemBuilder: (context, index) {
-                  Clinics clinics = cubit.Clinc[index];
                   cubit.id;
                   print(cubit.id[index]);
                   return ClincsContainer2(
-                    photoUrl: clinics.photo,
-                    ClincName: clinics.name,
+                    photoUrl: cubit.Clinc[index]["image"],
+                    ClincName: cubit.Clinc[index]["name"],
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => Docotors(
                                   id: cubit.id[index],
-                                  Name: clinics.name,
+                                  Name: cubit.Clinc[index]["name"],
                                 )),
                       );
                     },

@@ -1,6 +1,6 @@
-import 'package:comfirt_carr_admin/pressintation/auth/screen/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../auth/sign_up.dart';
 import '../Widgets/AdminTextFormField.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';

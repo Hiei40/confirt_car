@@ -96,14 +96,53 @@ class ProfileDoctor extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.symmetric(vertical: 30, horizontal: 22),
             color: Colors.white,
-            child: ListTile(
-              title: Text(DoctorInfo["name"]),
-              subtitle: Text(DoctorInfo["pio"]),
-              leading: CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(
-                    DoctorInfo["image"]==null?"https://firebasestorage.googleapis.com/v0/b/comfort-care-web-site.appspot.com/o/Doctors%2F9193824.png?alt=media&token=cc4670cf-1a0a-4161-8091-ad39afffad40":DoctorInfo["image"]),
-              ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ListTile(
+                    title: Text(DoctorInfo["name"]),
+                    subtitle: Text(DoctorInfo["pio"]),
+                    leading: CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(
+                          DoctorInfo["image"]==null?"https://firebasestorage.googleapis.com/v0/b/comfort-care-web-site.appspot.com/o/Doctors%2F9193824.png?alt=media&token=cc4670cf-1a0a-4161-8091-ad39afffad40":DoctorInfo["image"]),
+                    ),
+                  ),
+                ),
+                Expanded(flex: 1,child: Padding(
+                  padding: const EdgeInsets.only(top: 40.0,left: 400),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text("موعيد الدكتور",style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          ),
+                          alignment: Alignment.center,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(12),
+                              topLeft: Radius.circular(12),
+                            ),
+                            color: const Color.fromRGBO(0, 112, 205, 1),
+                          ),
+                        ),
+                        Text("الاحد من الساعه 11 الي 12 مساء"),
+                        Text("الاثنان من الساعه 11 الي 12 مساء"),
+                        Text("الثلثاء من الساعه 11 الي 12 مساء"),
+                        Text("الاربعاء من الساعه 11 الي 12 مساء"),
+                        Text("الخميس من الساعه 11 الي 12 مساء"),
+                        Text("الجمعه  من الساعه 11 الي 12 مساء"),
+                        Text("السيت من الساعه 11 الي 12 مساء"),
+
+                      ],
+                    ),
+                  ),
+                )),
+              ],
             ),
           ),
           BlocBuilder<DoctorCubit, MainDoctorState>(
@@ -119,7 +158,6 @@ class ProfileDoctor extends StatelessWidget {
                         builder: (context) =>ClientBookingScreen(IDDoctor:IDDoctor, clinic:clinic, DoctorInfo: DoctorInfo, ProfileInfo: ProfileInfo,)
                             // BookScreen(IDDoctor:IDDoctor, clinic:clinic, DoctorInfo: DoctorInfo, ProfileInfo: ProfileInfo["name"], ),
                       ));
-
 
 
                     },

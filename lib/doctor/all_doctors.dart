@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../pressintation/Docotors/widget/fillter_drower.dart';
 import 'DoctorProfile.dart';
 import '../auth/login_screen.dart';
 import '../auth/sign_up.dart';
@@ -135,32 +136,43 @@ class AllDoctors extends StatelessWidget {
                             padding:
                                 const EdgeInsets.only(right: 350.0, top: 20),
                             child: SizedBox(
-                              width: 800,
+                              width: 1600,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                        builder: (context) => Doctorsearch(
-                                            Name: Search.text, Clinic: Clinic),
-                                      ));
-                                    },
-                                    child: Container(
-                                      width: 150,
-                                      height: 60,
-                                      padding: EdgeInsets.only(left: 40),
-                                      child: Row(
-                                        children: [
-                                          Icon(Icons.search),
-                                          Text("البحث"),
-                                        ],
-                                      ),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: Colors.red,
+                                  SizedBox(width: 196,),
+                                    DropDownTypeList(
+                                    width: 150,
+                                    list: cubit.categoryList,
+                                    fun: cubit,
+                                      clinc: Clinic,
+                                    ),
+                                  SizedBox(width: 20,),
+                                  SizedBox(
+                                    width: 150,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => Doctorsearch(
+                                              Name: Search.text, Clinic: Clinic),
+                                        ));
+                                      },
+                                      child: Container(
+                                        width: 150,
+                                        height: 60,
+                                        padding: EdgeInsets.only(left: 40),
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.search),
+                                            Text("البحث"),
+                                          ],
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(12),
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -278,7 +290,7 @@ class AllDoctors extends StatelessWidget {
                                                 height: 20,
                                               ),
                                               Text(
-                                                "${cubit.allDoctorList[i]["price"].toString()}:الكشف ",
+                                                "${cubit.allDoctorList[i]["number"].toString()}:الكشف ",
                                                 style: TextStyle(
                                                   color: Colors.grey.shade500,
                                                   fontSize: 12,
@@ -288,7 +300,7 @@ class AllDoctors extends StatelessWidget {
                                                 height: 20,
                                               ),
                                               Text(
-                                                "الفروع :نسا و توليد",
+                                                "التخصص :نسا و توليد",
                                                 style: TextStyle(
                                                   color: Colors.grey.shade500,
                                                   fontSize: 12,

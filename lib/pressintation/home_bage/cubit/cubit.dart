@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:comfirt_carr_admin/pressintation/home_bage/Model/Clinc_Model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../home_bage/Model/Clinc_Model.dart';
 import 'state.dart';
 //     "Insurance",
 //     "Ministry of Interior",
@@ -14,7 +14,7 @@ class ClincsCubit extends Cubit<ClincsState> {
   List requestId=[];
   String update="";
   Map<String,dynamic>myProfile={};
-  List<Clinics> Clinc= [];
+  List Clinc= [];
   List id=["bu_cdimy","comfrt_care","slmtk"];
   fetchClincData() async {
 

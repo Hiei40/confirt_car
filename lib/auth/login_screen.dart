@@ -1,7 +1,8 @@
-import 'package:confirt_care/auth/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../main_screen/main_bage.dart';
+import '../pressintation/auth/screen/sign_up.dart';
 import 'LoginLayerCheck.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';

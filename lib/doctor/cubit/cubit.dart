@@ -3,8 +3,12 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confirt_care/doctor/cubit/state.dart';
+import 'package:confirt_care/doctor/doctor_category.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../auth/login_screen.dart';
 
 class DoctorCubit extends Cubit<MainDoctorState> {
   DoctorCubit() : super(initialState());
@@ -13,10 +17,18 @@ class DoctorCubit extends Cubit<MainDoctorState> {
   Map profileMap={};
   Map doctorMap={};
   Map DoctorData={};
-List searchList=[];
-List DoctorSearch=[];
+  List searchList=[];
+  List DoctorSearch=[];
   List allDoctorList=[];
   List DocotorsId=[];
+  List allDoctorCategoryList=[];
+  List DocotorsCategoryId=[];
+  List <String> categoryList=["عظام ","جراحة الاورام"];
+  String category="التخصص";
+  filtterList(value, Clinc){
+    category=value;
+    emit(CategoryDrobDownState());
+  }
   profile()async{
    await FirebaseFirestore.instance.collection("Profile").doc(FirebaseAuth.instance.currentUser!.uid).get().then((value){
       profileMap=value.data()!;
@@ -37,6 +49,22 @@ List DoctorSearch=[];
     });
     print(allDoctorList);
     emit(AllDoctorState());
+  }
+  allDoctorsCategory(String Clinic,type)async{
+    emit(loadingState());
+    allDoctorCategoryList.clear();
+    DocotorsCategoryId.clear();
+    await FirebaseFirestore.instance.collection("clinics").doc(Clinic)
+        .collection("doctors").where("type",isEqualTo:type ).get().then((value){
+      value.docs.forEach((v){
+        if(v["type"]==type){
+        DocotorsCategoryId.add(v.id);
+        allDoctorCategoryList.add(v.data());
+        }
+      });
+    });
+    print(allDoctorCategoryList);
+    emit(AllDoctorCategoryState());
   }
   doctors()async{
     emit(loadingState());
