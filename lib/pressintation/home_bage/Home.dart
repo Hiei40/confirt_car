@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../Docotors/BookingScreen.dart';
 import '../../Docotors/Docotors.dart';
+import '../Docotors/BookingScreen.dart';
 import 'Model/Clinc_Model.dart';
 import 'Widgets/ClincsContainer.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class AdminHome extends StatelessWidget {
+  const AdminHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class Home extends StatelessWidget {
     cubit.id;
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomeScreen"),
+        leading: Text("HomeScreen"),
+        backgroundColor: Colors.white,
       ),
       body: BlocBuilder<ClincsCubit, ClincsState>(
         builder: (context, state) {
@@ -31,15 +34,9 @@ class Home extends StatelessWidget {
                     photoUrl: cubit.Clinc[index]["image"],
                     ClincName: cubit.Clinc[index]["name"],
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Docotors(
-                                  id: cubit.id[index],
-                                  Name: cubit.Clinc[index]["name"],
-                                )),
-                      );
-                    },
+                      Navigator.push( context,
+                        MaterialPageRoute(builder: (context) =>
+                            BookingScreen(Name: "",)), );                    },
                     id: '',
                   );
                 }),

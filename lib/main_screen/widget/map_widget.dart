@@ -159,7 +159,7 @@ class MapWidget extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          "0223572009",
+                          "02235720088",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,

@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confirt_care/auth/cubit/state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +11,6 @@ class LoginCubit extends Cubit<LoginState> {
   String? b;
   String? c;
   bool obscureText = true;
-  List list = [];
   Map profileMap={};
   String emilv = "";
   String emaile = "";
@@ -22,39 +18,30 @@ class LoginCubit extends Cubit<LoginState> {
   SignInWithEamilandPass(email, pass) async {
     print(email);
     print(pass);
-    try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: pass,
       );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      }
-      if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-      emaile = "user not found";
-      passe = "Wrong password provided for that user";
-      print(e.code);
-    }
     emit(SuccessState());
   }
 
 
-  SignupWithEmailandpass(email, pass, name) async {
+  SignupWithEmailandpass(emailAddress, password,name,) async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: pass)
-          .then((value) {
-        sendData(value.user!.uid, email, name);
-      });
-      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailAddress,
+        password: password,
+      );
+      sendData(FirebaseAuth.instance.currentUser!.uid,emailAddress,name);
+
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        emilv = "email already exist";
+      if (e.code == 'weak-password') {
+        // print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        // print('The account already exists for that email.');
       }
-      log(e as String);
+    } catch (e) {
+      print(e);
     }
     emit(SignUpState());
   }
@@ -65,21 +52,21 @@ class LoginCubit extends Cubit<LoginState> {
     });
     emit(SetDataState());
   }
-  checkVal1(val) async {
-    if (list.length < 2) {
-      b = val;
-      list.add(val);
-    }
-    emit(Check1State());
-  }
-
-  checkVal2(val) async {
-    if (list.length < 2) {
-      c = val;
-      list.add(val);
-    }
-    emit(Check2State());
-  }
+  // checkVal1(val) async {
+  //   if (list.length < 2) {
+  //     b = val;
+  //     list.add(val);
+  //   }
+  //   emit(Check1State());
+  // }
+  //
+  // checkVal2(val) async {
+  //   if (list.length < 2) {
+  //     c = val;
+  //     list.add(val);
+  //   }
+  //   emit(Check2State());
+  // }
   profile()async{
   await  FirebaseFirestore.instance.collection("Profile").doc(FirebaseAuth.instance.currentUser!.uid).get().then((value){
       profileMap=value.data()!;

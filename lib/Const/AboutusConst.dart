@@ -3,39 +3,139 @@ class Aboutusconst {
       "At Beauty Academy, you will not need to search long for the best dermatologist in Egypt who specializes in treating any of the skin problems or those that need beautification because we provide you with a selection of the best doctors in Cairo to treat all skin diseases. The team of dermatologists at Beauty Academy is a group of specialists and consultants, including:\n\n"
       "The best dermatologist in Cairo";
 
-  static String BeatyAcamdemy = "Looking to gain extensive experience in the field of cosmetology and dermatology?\n"
-      "Searching for a comprehensive cosmetology diploma?\n"
-      "Beauty Academy has made it easy for you! 😍\n\n"
-      "👈🏻 We offer a comprehensive diploma in dermatology, cosmetology, and laser treatments.\n"
-      "👈🏻 It is the best diploma in Egypt and the Middle East that will help doctors and non-doctors alike learn the latest techniques in injections. 💉\n"
-      "👈🏻 It also prepares them to handle challenging and rare cases in the field of cosmetology, including:\n"
-      "✅ Anatomy (face & neck)\n"
-      "✅ Dermatology differential diagnosis for difficult cases\n"
-      "✅ Filler (full face), including skin booster injections\n"
-      "✅ Botox (upper face, gummy smile, hyperhidrosis)\n"
-      "✅ Threads (rejuvenation & lifting)\n"
-      "✅ Mesotherapy (hair, face & lipolysis)\n"
-      "✅ PRP\n"
-      "✅ Microneedling (derma pen & derma roller)\n"
-      "✅ Peeling (cold & chemical)\n"
-      "✅ Laser (hair removal & fractional laser)\n"
-      "✅ HIFU\n"
-      "✅ Plasmage\n"
-      "✅ Scar subcision\n"
-      "✅ Hydrafacial\n"
-      "✅ New techniques in acne treatment\n"
-      "✅ Hair loss treatment (androgenic & non-androgenic alopecia; alopecia areata and diffuse hair loss)\n"
-      "✅ Stretch marks\n"
-      "✅ Cellulite treatment\n"
-      "✅ Lipolysis injection for localized fat\n\n"
-      "👈🏻 We also provide you with certificates accredited by the American Board, the University of Pennsylvania, and the American University of Science in the field of cosmetology.\n"
-      "👈🏻 At the end of the course, you will receive a membership card and registration certificate from the syndicate, certified by the Egyptian Ministry of Foreign Affairs, qualifying you to work abroad.\n"
-      "👈🏻 You'll graduate from the course with comprehensive knowledge in dermatology and cosmetology with Dr. Nehad Fahmy 🧑‍⚕\n"
-      "▪ Dermatology, cosmetology, and laser consultant at Ain Shams University / Fellow at the University of Cambridge\n"
-      "▪ Head of the Dermatology and Cosmetology Department at the American Board in Egypt\n"
-      "▪ Internationally certified lecturer\n\n"
-      "👈🏻 After the course, you'll be able to practically apply everything you learned. 👌\n\n"
-      "📌 Hurry up and register for the course now to secure your spot before it's full! 🔥";
+  static String BeatyAcamdemy =
+      "هل تبحث عن اكتساب خبرة واسعة في مجال التجميل وعلم الأمراض الجلدية؟\n\n"
+      ""
+      ""
+      ""
+      "تبحث عن دبلوم شامل في مجال التجميل؟\n\n"
+      ""
+      ""
+      ""
+      "أكاديمية بيوتي سهلت الأمر بالنسبة لك! 😍\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 نحن نقدم دبلوم شامل في علم الأمراض الجلدية والتجميل وعلاجات الليزر.\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 إنه أفضل دبلوم في مصر والشرق الأوسط الذي سيساعد الأطباء وغير الأطباء على تعلم أحدث التقنيات في الحقن. 💉\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 كما يُعد الدبلوم استعدادًا للتعامل مع الحالات التحديثية والنادرة في مجال التجميل، بما في ذلك:\n\n"
+      ""
+      ""
+      ""
+      "✅ التشريح (الوجه والرقبة)\n\n"
+      ""
+      ""
+      ""
+      "✅ تشخيص التشخيص التفاضلي لحالات الجلدية الصعبة\n\n"
+      ""
+      ""
+      ""
+      "✅ ملء الوجه بالحشوات، بما في ذلك حقن تعزيز الجلد\n\n"
+      ""
+      ""
+      ""
+      "✅ حقن البوتوكس (الجزء العلوي من الوجه، ابتسامة اللثة، فرط التعرق)\n\n"
+      ""
+      ""
+      ""
+      "✅ الخيوط (التجديد والرفع)\n\n"
+      ""
+      ""
+      ""
+      "✅ الميزوثيرابي (الشعر، الوجه والليبوليزيس)\n\n"
+      ""
+      ""
+      ""
+      "✅ PRP\n\n"
+      ""
+      ""
+      ""
+      ""
+      ""
+      ""
+      "✅ تقشير الجلد (بالبرد والكيميائي)\n\n"
+      ""
+      ""
+      ""
+      "✅ الليزر (إزالة الشعر والليزر الجزئي)\n\n"
+      ""
+      ""
+      ""
+      "✅ HIFU\n\n"
+      ""
+      ""
+      ""
+      "✅ Plasmage\n\n"
+      ""
+      ""
+      ""
+      "✅ تقشير الندبات\n\n"
+      ""
+      ""
+      ""
+      "✅ هيدرافيشيال\n\n"
+      ""
+      ""
+      ""
+      "✅ تقنيات جديدة في علاج حب الشباب\n\n"
+      ""
+      ""
+      ""
+      "✅ علاج تساقط الشعر (الأندروجيني والغير أندروجيني؛ الألوبيشيا النخاعية وتساقط الشعر المتناثر)\n\n"
+      ""
+      ""
+      ""
+      "✅ تمدد العلامات\n\n"
+      ""
+      ""
+      ""
+      "✅ علاج السيلوليت\n\n"
+      ""
+      ""
+      ""
+      "✅ حقن ليبوليسيس للدهون المحلية\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 نوفر لكم أيضًا شهادات معتمدة من الجمعية الأمريكية، جامعة بنسلفانيا، والجامعة الأمريكية للعلوم في مجال التجميل.\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 في نهاية الدورة، ستحصلون على بطاقة عضوية وشهادة تسجيل من النقابة، معتمدة من وزارة الخارجية المصرية، مما يؤهلكم للعمل في الخارج.\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 ستتخرجون من الدورة بمعرفة شاملة في علم الأمراض الجلدية والتجميل مع الدكتورة نهاد فهمي 🧑‍⚕\n\n"
+      ""
+      ""
+      ""
+      "▪ استشاري علم الأمراض الجلدية والتجميل والليزر في جامعة عين شمس / زميل في جامعة كامبريدج\n\n"
+      ""
+      ""
+      ""
+      "▪ رئيس قسم علم الأمراض الجلدية والتجميل في الجمعية الأمريكية في مصر\n\n"
+      ""
+      ""
+      ""
+      "▪ محاضر معتمد دوليًا\n\n"
+      ""
+      ""
+      ""
+      "👈🏻 بعد الدورة، ستكونون قادرين على تطبيق كل ما تعلمتم عمليًا. 👌\n\n"
+      ""
+      ""
+      ""
+      "📌 سارعوا بالتسجيل في الدورة الآن لضمان مكانكم قبل امتلاء الفصول! 🔥";
 
-  static String ComfortCare = "Comfort Care Medical Services is the owner of the project \"Modern Salamatak Specialized Clinics\" and is one of the leading companies in the management and operation of specialized clinics. We utilize the latest global equipment and technologies, featuring prominent specialists, doctors, researchers, and nurses in Egypt.";
+
+  static String ComfortCare = "تقديم أعلى مستوى من الرعاية الصحية المتخصصة والتزامنا القوي بتقديم خدمات طبية متميزة وعالية الجودة في القطاع الصحي الخاص تهدف إلى الرقي بمستوى الخدمات الصحية بإستخدام أفضل الأجهزة الحديثة والمتطورة وأحدث ما توصلت إليه المعارف العلمية لخدمة مرضانا وتخفيف معاناتهم وتحقيق رضاهم وفق أعلى معايير الجودة العالمية.";
+  static String ComfortCare2 = "قيمنا تنبع من تميزنا برعاية مرضانا و الالتزام بأعلى معايير الجوده العناية بالمريض: وضع احتياجات المرضى في المرتبة الأولى . الجودة: السعي للتميز والجودة العالية من خلال الإبداع والابتكار التعاون: العمل سويا لضمان تبادل المعرفة والحكمة لمصلحة الجميع وتعزيز العمل بروح الفريق الواحد";
+  static String ComfortCare3 = "تقديم خدمات صحية شاملة بجودة عالمية وفق احدث أساليب التكنولوجيا المتطوره والتطلع لتحقيق التميز والابتكار في مجال تقديم الخدمات الطبية بمستوى عالمي والتأكيد على نجاح عيادتنا الطبيه  في بناء علاقات وطيدة وقوية وإيجابية مع مرضانا.";
+
 }

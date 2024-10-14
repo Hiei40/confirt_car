@@ -1,3 +1,4 @@
+import 'package:confirt_care/auth/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,6 @@ class LoginScreen extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: BlocBuilder<LoginCubit, LoginState>(

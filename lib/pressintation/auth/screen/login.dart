@@ -5,8 +5,8 @@ import '../Widgets/AdminTextFormField.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
