@@ -169,7 +169,7 @@ final String Clinic;
                                   onTap: (){
 
                                     Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>  ProfileDoctor(IDDoctor:cubit.DocotorsId[i], clinic: Clinic, DoctorInfo: cubit.allDoctorList[i], ProfileInfo: cubit.profileMap,),
+                                      builder: (context) =>  ProfileDoctor(IDDoctor:cubit.DocotorsId[i], clinic: Clinic, DoctorInfo: cubit.allDoctorList[i], title:""),
                                     ));
                                   },
                                   child: Padding(

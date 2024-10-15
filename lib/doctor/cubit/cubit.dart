@@ -1,15 +1,7 @@
-import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confirt_care/doctor/cubit/state.dart';
-import 'package:confirt_care/doctor/doctor_category.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../auth/login_screen.dart';
-
 class DoctorCubit extends Cubit<MainDoctorState> {
   DoctorCubit() : super(initialState());
 
@@ -21,9 +13,38 @@ class DoctorCubit extends Cubit<MainDoctorState> {
   List DoctorSearch=[];
   List allDoctorList=[];
   List DocotorsId=[];
+  List days=[];
+  List dateTimes=[];
   List allDoctorCategoryList=[];
   List DocotorsCategoryId=[];
-  List <String> categoryList=["عظام ","جراحة الاورام"];
+  List <String> categoryList=[
+    "الكل",
+    'جلدية ',
+    "تخسيس وتغذيه ",
+    'نسا وتوليد ',
+    'اورام ',
+    'جراحة اوعية ',
+    'انف واذن وحنجره ',
+    'جهاز هضمى ومناظي ',
+'جراحه المخ والاعصاب ',
+    'عظام ',
+    'باطنه ',
+    'سكر وغدد صماء ',
+    'انف واذن وحنجره ',
+    'اورام ',
+    'عظام ',
+    'ممارس عام ',
+    'باطنه ',
+    'ذكورة وعقم ',
+    'اطفال وحديث الولادة ',
+    'نسا وتوليد ',
+    'قلب واوعيه ',
+    'علاج علاج الالم  ',
+    "جراحة الاورام ",
+    'جلدية ',
+    'كلى ',
+    'روماتيزم ',
+  ];
   String category="التخصص";
   filtterList(value, Clinc){
     category=value;
@@ -47,7 +68,7 @@ class DoctorCubit extends Cubit<MainDoctorState> {
        allDoctorList.add(v.data());
      });
     });
-    print(allDoctorList);
+    // print(allDoctorList);
     emit(AllDoctorState());
   }
   allDoctorsCategory(String Clinic,type)async{
@@ -83,6 +104,22 @@ class DoctorCubit extends Cubit<MainDoctorState> {
 
     print(allDoctorList);
     emit(DoctorState());
+  }
+  doctorData(String Clinic, String Doctor)async{
+    emit(DoctorLoadingState());
+    days=[];
+    dateTimes=[];
+    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("doctors").doc(Doctor).get().then((v){
+      doctorMap=v.data()!;
+
+      if(v.data()!["days"]!=null){
+      days=v.data()!["days"];
+      dateTimes=v.data()!["Booking date"];
+      }
+      print(days);
+    });
+    print(allDoctorList);
+    emit(DoctorDataState());
   }
   searchCubit(search)async{
     emit(EmptyState());

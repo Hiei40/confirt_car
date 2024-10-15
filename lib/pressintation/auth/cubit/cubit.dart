@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:confirt_care/pressintation/auth/cubit/state.dart';
+import 'package:confirt_care/pressintation/blog/cubit/state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../state.dart';
 
 class AuthCubit extends Cubit<AuthMainState> {
   AuthCubit() : super(AuthInitState());
@@ -55,7 +57,7 @@ class AuthCubit extends Cubit<AuthMainState> {
       User? user = userCredential.user;
 
       if (user != null) {
-        await user.updateProfile(displayName: name);
+        await user.updateDisplayName ( name);
         await user.reload();
         user = FirebaseAuth.instance.currentUser;
 

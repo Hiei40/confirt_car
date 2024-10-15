@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/sign_up.dart';
+import '../state.dart';
 import '../Widgets/AdminTextFormField.dart';
 import '../cubit/cubit.dart';
-import '../cubit/state.dart';
+import '../../blog/cubit/state.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -239,4 +238,4 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-}
+

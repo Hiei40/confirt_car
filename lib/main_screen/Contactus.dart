@@ -1,14 +1,9 @@
+import 'package:confirt_care/utils/widget/app_bar.dart';
+import 'package:confirt_care/utils/widget/main_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../auth/LoginLayerCheck.dart';
 import '../auth/cubit/cubit.dart';
 import '../auth/cubit/state.dart';
-import '../auth/login_screen.dart';
-import '../auth/sign_up.dart';
-import 'main_bage.dart';
-
 class Contactus extends StatelessWidget {
   const Contactus({super.key});
 
@@ -23,243 +18,107 @@ class Contactus extends StatelessWidget {
        builder: (context, state) {
          return SingleChildScrollView(
              child: Column(children: [
-               Container(
-                 width: double.infinity,
-                 height: 50,
-                 color:const  Color.fromRGBO(0, 112, 205,1),
-                 child: Row(children: [
-                   InkWell(
-                     onTap: (){
-                       Navigator.of(context).push(
-                           MaterialPageRoute(
-                             builder: (context) => const  MainPage(),
-                           ));
-                     },
-                     child: Text("     comfort care",style: TextStyle(
-                         fontWeight: FontWeight.bold,
-                         fontSize: 20,
-                         color: Colors.white
-                     ),),
-                   ),
-                   SizedBox(width: 1000,),
-                   Row(
-                     crossAxisAlignment: CrossAxisAlignment.end,
-                     mainAxisAlignment: MainAxisAlignment.end,
-                     children: [
-                       InkWell(
-                         onTap: (){
-                           Navigator.of(context).push(
-                               MaterialPageRoute(
-                                 builder: (context) => SignUpScreen(),
-                               ));
-                         },                      child: Text("SignUp      ",style: TextStyle(
-                           fontWeight: FontWeight.bold,
-                           fontSize: 12,
-                           color: Colors.white
-                       ),),
-                       ),InkWell(onTap: (){
-                         Navigator.of(context).push(
-                             MaterialPageRoute(
-                               builder: (context) => const  Layer_check(),
-                             ));
-                       },
-                         child: Text("Login      ",style: TextStyle(
-                             fontWeight: FontWeight.bold,
-                             fontSize: 12,
-                             color: Colors.white
-                         ),),
-                       ),Text("Contact us",style: TextStyle(
-                           fontWeight: FontWeight.bold,
-                           fontSize: 12,
-                           color: Colors.white
-                       ),),
-                     ],),
-                 ],),
-               ),
-               Stack(
-                 children: [
-                   Container(
-                     width: double.infinity,
-                     height: 300,
-                     decoration: const BoxDecoration(
-                       image: DecorationImage(
-                         image: AssetImage("image/cover Image.jpg"),
-                         fit: BoxFit.cover,
-                       ),
-                     ),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.only(top: 40.0, left: 20),
-                     child: Text(
-                       "Better Healthcare for a Better Life",
-                       style: TextStyle(
-                         color: Colors.grey.shade700,
-                         fontSize: 28,
-                       ),
-                     ),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.only(top: 80, left: 20),
-                     child: Text(
-                       "Book online or call 01050002288",
-                       style: TextStyle(
-                         color: Colors.grey.shade700,
-                         fontSize: 18,
-                       ),
-                     ),
-                   ),
-                 ],
-               ),
+               MainAppBar(),
                SizedBox(
                  height: (1 / 30) * hieght,
-               ),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                   Expanded(
-                     child: const Text(
-                       "Contact Us",
-                       style: TextStyle(
-                           fontWeight: FontWeight.w700,
-                           fontSize: 26,
-                           color: Colors.blue),
-                     ),
-                   ),
-                 ],
-               ),
-               SizedBox(
-                 height: (1 / 30) * hieght,
-               ),
-               Column(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   Container(
-                     child: const Text(
-                       "Address: 8 Block 1, Mostafa El-Nahas Street, next to Al-Manhal School, Nasr City, Cairo",
-                       style: TextStyle(
-                           fontWeight: FontWeight.w700,
-                           fontSize: 18,
-                           color: Colors.grey),
-                     ),
-                   ),
-                   Container(
-                     child: const Text(
-                       "0223572009",
-                       style: TextStyle(
-                           fontWeight: FontWeight.w700,
-                           fontSize: 18,
-                           color: Colors.grey),
-                     ),
-                   ),  SizedBox(
-                     height: (1 / 30) * hieght,
-                   ),  Container(
-                     child: const Text(
-                       "01050002288",
-                       style: TextStyle(
-                           fontWeight: FontWeight.w700,
-                           fontSize: 18,
-                           color: Colors.grey),
-                     ),
-                   ), SizedBox(
-                     height: (1 / 30) * hieght,
-                   ), Container(
-                     child: const Text(
-                       "01050002299",
-                       style: TextStyle(
-                           fontWeight: FontWeight.w700,
-                           fontSize: 18,
-                           color: Colors.grey),
-                     ),
-                   ),
-                 ],
-               ),
-               SizedBox(
-                 height: 100,
                ),
                Padding(
-                 padding: const EdgeInsets.only(top: 80.0),
-                 child: Container(
-                   height: 300,
-                   width: double.infinity,
-                   color: const Color.fromRGBO(0, 112, 205, 1),
-                   child: Row(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     mainAxisAlignment: MainAxisAlignment.start,
-                     children: [
-                       const SizedBox(
-                         width: 120,
-                       ),
-                       const Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         mainAxisAlignment: MainAxisAlignment.start,
-                         children: [
-                           SizedBox(
-                             height: 20,
-                           ),
-                           Text(
-                             "comfort care",
+                 padding: const EdgeInsets.all(16.0),
+                 child: Column(
+                   children: [
+                     Row(
+                       crossAxisAlignment: CrossAxisAlignment.end,
+                       children: [
+                       LayoutBuilder(
+                           builder: (context,constraints) {
+                             return constraints.maxWidth < 600? SizedBox(width: 100,):SizedBox(width: 890,);
+                           }
+                         ),
+                         const Text(
+                           "للتواصل معنا",
+                           style: TextStyle(
+                               fontWeight: FontWeight.w700,
+                               fontSize: 26,
+                               color: Colors.blue),
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height: (1 / 30) * hieght,
+                     ),
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.end,
+                       children: [
+                         Text(
+                           "العنوان",
+                           style: TextStyle(
+                               fontWeight: FontWeight.w700,
+                               fontSize: 26,
+                               color: Colors.blue),
+                         ),
+                         SizedBox(width: 20,),
+                         Container(
+                           child: const Text(
+                             " 8 قطعة 1، شارع مصطفى النحاس، بجوار مدرسة المنهل، مدينة نصر، القاهرة",
                              style: TextStyle(
-                                 fontWeight: FontWeight.bold,
-                                 fontSize: 20,
-                                 color: Colors.white),
-                           ),
-                           SizedBox(
-                             height: 40,
-                           ),
-                           Text(
-                             "About Us",
-                             style: TextStyle(fontSize: 12, color: Colors.white),
-                           ),
-                           SizedBox(
-                             height: 20,
-                           ),
-                           Text(
-                             "Contact Us",
-                             style: TextStyle(fontSize: 12, color: Colors.white),
-                           ),
-                         ],
-                       ),
-                 //Footer
-                 SizedBox(
-                   width: 800,
-                 ),
-                       Container(
-                         color: const Color.fromRGBO(0, 112, 205, 1),
-                         height: 200,
-                         alignment: Alignment.bottomCenter,
-                         child: Padding(
-                           padding: const EdgeInsets.only(bottom: 20.0),
-                           child: Row(
-                             children: [
-                               Container(
-                                 height: 100,
-                                 width: 200,
-                                 child: Row(
-                                   children: [
-                                     Expanded(
-                                         flex: 1,
-                                         child: Icon(
-                                           Icons.facebook,
-                                           color: Colors.white,
-                                         )),
-                                     Expanded(
-                                         flex: 1,
-                                         child: Icon(FontAwesomeIcons.instagram,
-                                             color: Colors.white)),
-                                     Expanded(
-                                         flex: 1,
-                                         child: Icon(FontAwesomeIcons.twitter,
-                                             color: Colors.white)),
-                                   ],
-                                 ),
-                               ),
-                             ],
+                                 fontWeight: FontWeight.w700,
+                                 fontSize: 18,
+                                 color: Colors.grey),
+                             textDirection: TextDirection.rtl,
                            ),
                          ),
-                       ),
-                     ],
-                   ),
+                         SizedBox(width: 20,),
+
+                         Text(
+                           "رقم الهاتف",
+                           style: TextStyle(
+                               fontWeight: FontWeight.w700,
+                               fontSize: 26,
+                               color: Colors.blue),
+                         ),
+                         SizedBox(width: 20,),
+
+                         Container(
+                           child: const Text(
+                             "0223572009",
+                             style: TextStyle(
+                                 fontWeight: FontWeight.w700,
+                                 fontSize: 18,
+                                 color: Colors.grey),
+                           ),
+                         ),  SizedBox(
+                           height: (1 / 30) * hieght,
+                         ),  Container(
+                           child: const Text(
+                             "01050002288",
+                             style: TextStyle(
+                                 fontWeight: FontWeight.w700,
+                                 fontSize: 18,
+                                 color: Colors.grey),
+                           ),
+                         ), SizedBox(
+                           height: (1 / 30) * hieght,
+                         ), Container(
+                           child: const Text(
+                             "01050002288",
+                             style: TextStyle(
+                                 fontWeight: FontWeight.w700,
+                                 fontSize: 18,
+                                 color: Colors.grey),
+                           ),
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height: 100,
+                     ),
+                   ],
                  ),
+               ),
+
+               Padding(
+                 padding: const EdgeInsets.only(top: 80.0),
+                 child: MainBottomBar(),
                )
              ]));
        },

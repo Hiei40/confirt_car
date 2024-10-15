@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/login_screen.dart';
+import '../state.dart';
 import '../cubit/cubit.dart';
-import '../cubit/state.dart';
+import '../../blog/cubit/state.dart';
 
 
 class LoginCheck extends StatelessWidget {

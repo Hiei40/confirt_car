@@ -1,217 +1,405 @@
+import 'package:confirt_care/auth/cubit/cubit.dart';
+import 'package:confirt_care/auth/cubit/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../auth/LoginLayerCheck.dart';
 import '../../../auth/login_screen.dart';
+import '../../../auth/sign_up.dart';
+import '../../../main_screen/main_bage.dart';
 import '../../../utils/contrrolers.dart';
-import '../Widgets/AdminTextFormField.dart';
-import '../cubit/cubit.dart';
-import '../cubit/state.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class SignUpAdmin extends StatelessWidget {
+  SignUpAdmin({Key? key}) : super(key: key);
 
+  static List<String> genders = ["male", "female"];
+
+  final _formKey = GlobalKey<FormState>();
+
+ // GlobalKey for form validation
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit.get(context);
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    TextEditingController emailController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController passwordController1 = TextEditingController();
-    TextEditingController passwordController2 = TextEditingController();
-    GlobalKey<FormState> formFieldLogin = GlobalKey();
-
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Row(
-          children: [
-            Text(
-              "Comfortcare",
-              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
-            ),
-            Text(
-              ".com",
-              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-      body: BlocConsumer<AuthCubit, AuthMainState>(
-        listener: (BuildContext context, AuthMainState state) {
-          if (state is SignInStateError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.Error)),
-            );
-          } else if (state is SignUpState) {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (Route<dynamic> route) => false,
-            );
-          }
-        },
+    LoginCubit cubit = LoginCubit.get(context);
+    Controllers.emailController;
+    Controllers.passwordController;
+    Controllers.userNameController;
+    return BlocBuilder<LoginCubit,LoginState>(
         builder: (context, state) {
-          return Form(
-            key: formFieldLogin,
-            child: ListView(
-              children: [
-                Column(
+          return Scaffold(
+            backgroundColor: Colors.grey.shade300,
+            body: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
                   children: [
-                    SizedBox(height: 50),
                     Container(
-                      width: (width < 600) ? 400 : (width < 800) ? 600 : 700,
-                      height: (width < 600) ? 600 : (width < 1200) ? 670 : 700,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      child: Column(
+                      width: double.infinity,
+                      height: 50,
+                      color: const Color.fromRGBO(0, 112, 205, 1),
+                      child: Row(
                         children: [
-                          Container(
-                            alignment: Alignment.center,
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const MainPage(),
+                                ),
+                              );
+                            },
                             child: Text(
-                              "الانضمام الان",
+                              "     comfort care",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
-                            ),
-                            width: (width < 600)
-                                ? 400
-                                : (width < 800)
-                                ? 600
-                                : 700,
-                            height: (width < 600)
-                                ? 30
-                                : (width < 1200)
-                                ? 40
-                                : 50,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                topLeft: Radius.circular(20),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-                          SizedBox(height: 40),
-                          _buildTextField("الاسم", nameController),
-                          SizedBox(height: 20),
-                          _buildTextField("البريد الألكتروني", emailController, email: true),
-                          SizedBox(height: 10),
-                          _buildTextField("كلمه المرور", passwordController1, obscure: true),
-                          SizedBox(height: 10),
-                          _buildTextField("تاكيد كلمه المرور", passwordController2, obscure: true),
-                          SizedBox(height: 20),
-                          _buildSignUpButton(context, cubit, emailController, passwordController1, passwordController2, nameController, formFieldLogin),
-                          SizedBox(height: 30),
-                          _buildLoginRow(context),
+                          SizedBox(width: 1000,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUpScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "SignUp      ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const Layer_check(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Login      ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "Contact us",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 0.0, top: 20, bottom: 20),
+                      child: Container(
+                        height: 600,
+                        width: 500,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.shade800,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(12),
+                                    topLeft: Radius.circular(12),
+                                  ),
+                                ),
+                                child: Text(
+                                  "SignUp",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 20,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 75,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Text(
+                                            "Your Name",
+                                            style: TextStyle(
+                                              color: Color(0xFF666666),
+                                              fontWeight: FontWeight.w100,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 6,
+                                          child: SizedBox(
+
+                                            width: 380,
+                                            child: TextFormField(
+                                              controller: Controllers.userNameController,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter your name';
+                                                }
+                                                return null;
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText: "Name",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 75,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Text(
+                                            "Email Address",
+                                            style: TextStyle(
+                                              color: Color(0xFF666666),
+                                              fontWeight: FontWeight.w100,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 6,
+                                          child: SizedBox(
+                                            width: 380,
+                                            child: TextFormField(
+                                              controller: Controllers.emailController,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter your email';
+                                                }
+                                                // Add email validation logic here if needed
+                                                return null;
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText: "Email",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 75,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Text(
+                                            "Password",
+                                            style: TextStyle(
+                                              color: Color(0xFF666666),
+                                              fontWeight: FontWeight.w100,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 6,
+                                          child: SizedBox(
+                                            width: 380,
+                                            child: TextFormField(
+                                              controller: Controllers.passwordController,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter a password';
+                                                }
+                                                // Add password validation logic here if needed
+                                                return null;
+                                              },
+                                              obscureText: true,
+                                              decoration: InputDecoration(
+                                                hintText: "Password",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 75,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 20,),
+                                        const Expanded(
+                                          flex: 3,
+                                          child: Text(
+                                            "Gender",
+                                            style: TextStyle(
+                                              color: Color(0xFF666666),
+                                              fontWeight: FontWeight.w100,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 6,
+                                          child: DropdownButtonFormField<
+                                              String>(
+                                            value: genders.first,
+                                            onChanged: (String? value) {},
+                                            items: genders.map((String gender) {
+                                              return DropdownMenuItem<String>(
+                                                value: gender,
+                                                child: Text(gender),
+                                              );
+                                            }).toList(),
+                                            decoration: InputDecoration(
+                                              hintText: "Select gender",
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20.0),
+                              child: InkWell(
+                                onTap: ()  async{
+                                 await cubit.SignupWithEmailandpass(
+                                      Controllers.emailController.text,
+                                      Controllers.passwordController.text,
+                                      Controllers.userNameController);;
+                                  if (_formKey.currentState!.validate()) {
+                                    // Form is validated, proceed with sign up logic
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Sign up has been Succful',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 40,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color: Colors.red,
+                                  ),
+                                  child: Text(
+                                    "Join",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              width: 400,
+                              child: Divider(
+                                height: 1,
+                                color: Colors.black,
+                                thickness: .3,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 400,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 70.0, top: 10),
+                                child: Row(
+                                  children: [
+                                    Text("Already Registered in ComfartCare ?"),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (
+                                                context) => const LoginScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        "Login",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 50,),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           );
-        },
-      ),
-    );
-  }
-
-  Widget _buildTextField(String label, TextEditingController controller, {bool email = false, bool obscure = false}) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SizedBox(width: 25),
-            Text(
-              label,
-              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey),
-            ),
-            SizedBox(width: 25),
-          ],
-        ),
-        SizedBox(height: 10),
-        AdminTextFormField(
-          controller: controller,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "$label Musn't be Empty";
-            } else if (email && !value.contains("@")) {
-              return "Not a Valid Email";
-            } else if (obscure && value.length < 7) {
-              return "Password Must Be More Than 7";
-            }
-            return null;
-          },
-          obscure: obscure,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSignUpButton(
-      BuildContext context,
-      AuthCubit cubit,
-      TextEditingController emailController,
-      TextEditingController passwordController1,
-      TextEditingController passwordController2,
-      TextEditingController nameController,
-      GlobalKey<FormState> formFieldLogin,
-      ) {
-    return InkWell(
-      onTap: () {
-        final isValidForm = formFieldLogin.currentState!.validate();
-        if (isValidForm) {
-          cubit.signUpCubit(emailController.text, passwordController1.text, nameController.text);
         }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Colors.red,
-        ),
-        alignment: Alignment.center,
-        height: 50,
-        width: MediaQuery.of(context).size.width < 600 ? 250 : 550,
-        child: Text(
-          "تسجيل الحساب",
-          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLoginRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(width: 30),
-        InkWell(
-          onTap: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (Route<dynamic> route) => false,
-            );
-          },
-          child: Text(
-            "تسجيل الدخول",
-            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.blue),
-          ),
-        ),
-        SizedBox(width: 20),
-        Text(
-          "ComfortCare  ",
-          style: TextStyle(fontWeight: FontWeight.w900, color: Colors.grey),
-        ),
-        Text(
-          "مسجل بالفعل في",
-          style: TextStyle(fontWeight: FontWeight.w900, color: Colors.grey),
-        ),
-        SizedBox(width: 25),
-      ],
     );
   }
 }

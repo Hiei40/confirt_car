@@ -1,3 +1,5 @@
+import 'package:confirt_care/pressintation/Docotors/BookingScreen.dart';
+import 'package:confirt_care/pressintation/blog/blogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,6 +21,18 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("HomeScreen"),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Blogs()
+                ));
+            },
+            child: Text("blogs"),
+          )
+        ],
       ),
       body: BlocBuilder<ClincsCubit, ClincsState>(
         builder: (context, state) {
@@ -36,9 +50,8 @@ class Home extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Docotors(
-                                  id: cubit.id[index],
-                                  Name: clinics.name,
+                            builder: (context) => BookingScreen(
+                                  Name: "",
                                 )),
                       );
                     },

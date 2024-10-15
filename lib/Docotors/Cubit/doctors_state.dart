@@ -1,7 +1,4 @@
-part of 'doctors_cubit.dart';
-
-@immutable
-sealed class DoctorsState {}
+abstract class DoctorsState {}
 
 final class DoctorsInitial extends DoctorsState {}
 class DoctorsClincLoading extends DoctorsState {}

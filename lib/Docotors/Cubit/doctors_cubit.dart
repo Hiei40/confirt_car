@@ -1,13 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-
 import '../Model/Booking.dart';
 import '../Model/Doctor_model.dart';
+import 'doctors_state.dart';
 
-part 'doctors_state.dart';
 
 class DoctorsCubit extends Cubit<DoctorsState> {
   DoctorsCubit() : super(DoctorsInitial());
@@ -15,40 +11,18 @@ class DoctorsCubit extends Cubit<DoctorsState> {
 
   List<Doctors> doctorList = [];
   List<Doctors> idList = [];
-  List<Booking> Book = [];
-
-  fetchDoctorData(String id) async {
-    try {
+  List Book = [];
+  fetchDoctorData() async {
       emit(DoctorsClincLoading());
-
-      // Fetch data from Firestore
-      CollectionReference clinicData = FirebaseFirestore.instance.collection("clinics");
-      QuerySnapshot doctorsSnapshot = await clinicData.doc(id).collection("doctors").get();
-
-      // Clear lists before populating
-      doctorList.clear();
-      idList.clear();
-
-      // Populate lists
-      doctorsSnapshot.docs.forEach((DocumentSnapshot document) {
-        var data = document.data() as Map<String, dynamic>;
-        String id = document.id;
-        Doctors doctor = Doctors.fromJson(data);
-        doctorList.add(doctor);
-        idList.add(Doctors.fromJson({...data, 'id': id}));
-      });
-
-      print("ID:${idList[0].id}");
-
+      await  FirebaseFirestore.instance.collectionGroup("Booking").get().then((v){
+         v.docs.forEach((index){
+           Book.add(index.data());
+         });
+       });
       emit(DoctorsClincSuccful());
-    } catch (e) {
-      // Emit error state if any exception occurs
-      emit(DoctorsClincError(Erorr: "Failed to load data: $e", ));
-    }
   }
   fetchCollectionGroupData(String Name) async {
   print(Name);
-
       Book.clear();
       emit(CollectionGroupDataLoading());
 
@@ -77,5 +51,6 @@ print("This Book List${Book}");
   print("This Book List${Book[0].doctorName}");
 
   }
+
 
 }

@@ -1,14 +1,11 @@
 import 'package:confirt_care/main_screen/main_bage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../home_bage/Home.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
-import 'login_screen.dart';
 
-// state is EmptyLoginState? const Center(child: CircularProgressIndicator(),) :
 class Layer_check extends StatelessWidget {
   const Layer_check({super.key});
 
