@@ -27,12 +27,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+
     final routerDelegate = BeamerDelegate(
       locationBuilder: BeamerLocationBuilder(
         beamLocations: [HomeLocation()],
       ),
       notFoundRedirectNamed: '/',
     );
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LoginCubit()),
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
       // ),
       child: MaterialApp(
         home: LoginScreen(),
+    debugShowCheckedModeBanner: false,
       ),
     );
   }

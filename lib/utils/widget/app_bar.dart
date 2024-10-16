@@ -3,6 +3,8 @@ import 'package:confirt_care/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../../auth/sign_up.dart';
 import '../../main_screen/main_bage.dart';
+import '../../pressintation/blog/choose_blog.dart';
+import '../../pressintation/blog/read_all_blogs.dart';
 class MainAppBar extends StatelessWidget {
   const MainAppBar({super.key});
   @override
@@ -71,6 +73,20 @@ class MainAppBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ReadAllBlogs()
+                            ));
+                      },
+                      child: Text("blogs      ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: Colors.black),),
+                    ),
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(

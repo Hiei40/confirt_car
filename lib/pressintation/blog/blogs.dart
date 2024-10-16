@@ -17,19 +17,19 @@ class Blogs extends StatelessWidget {
     List<TextEditingController> blogContents = List.generate(cubit.index, (index) => TextEditingController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Blogs",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 24,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.deepPurpleAccent,
-        elevation: 4,
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Blogs",
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.w600,
+      //       fontSize: 24,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.deepPurpleAccent,
+      //   elevation: 4,
+      //   centerTitle: true,
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
