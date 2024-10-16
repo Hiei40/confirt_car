@@ -10,13 +10,14 @@ class DoctorsCard extends StatelessWidget {
     required this.title,
     required this.mapProfile,
     required this.days,
-    required this.dateTimes});
+    required this.dateTimes, required this.dateDays});
   final Map<String,dynamic>mapDoctor;
   final String id;
   final String Clinic;
   final String title;
   final Map mapProfile;
   final List days;
+  final List dateDays;
   final List dateTimes;
   @override
   Widget build(BuildContext context) {
@@ -170,17 +171,25 @@ class DoctorsCard extends StatelessWidget {
                                               DoctorInfo: mapDoctor,
                                               date:"",
                                             ),
-                                      ));
-                                    },
+                                      ));                                    },
                                     child: Container(
                                       child: Column(
                                         children: [
                                           Container(
-                                            child: Text(
-                                              days[i],
-                                              style: TextStyle(
-                                                color: Colors .white,
-                                              ),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  days[i],
+                                                  style: TextStyle(
+                                                    color: Colors .white,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "${dateDays[i]}",
+                                                  style: TextStyle(
+                                                    color: Colors .white,
+                                                  ),                                                ),
+                                              ],
                                             ),
                                             alignment: Alignment.center,
                                             width: 75,
@@ -334,14 +343,25 @@ class DoctorsCard extends StatelessWidget {
                                               child: Column(
                                                 children: [
                                                   Container(
-                                                    child: Text(
-                                                      days[i],
-                                                      style: TextStyle(
-                                                        color: Colors .white,
-                                                      ),
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          days[i],
+                                                          style: TextStyle(
+                                                            color: Colors .white,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "${dateDays[i]}",
+                                                          style: TextStyle(
+                                                            color: Colors .white,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                     alignment: Alignment.center,
                                                     width: 75,
+                                                    height: 40,
                                                     decoration: BoxDecoration(
                                                       borderRadius: BorderRadius.only(
                                                         topRight: Radius.circular(8),

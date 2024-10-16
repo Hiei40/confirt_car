@@ -88,8 +88,8 @@ class AllDoctors extends StatelessWidget {
                             child: ListView.builder(
                                 itemCount: cubit.allDoctorList.length,
                                 itemBuilder: (c, i) {
-                                  print(cubit.allDoctorList[i]["type"]);
                                   return DoctorsCard(
+                                    dateDays: cubit.allDoctorList[i]["Bookingdays"]!= null ?cubit.allDoctorList[i]["Bookingdays"]:[],
                                     title: title,
                                     Clinic: Clinic,
                                     id: cubit.DocotorsId[i],
@@ -111,9 +111,9 @@ class AllDoctors extends StatelessWidget {
                             physics: NeverScrollableScrollPhysics(),
                               itemCount: cubit.allDoctorList.length,
                               itemBuilder: (c, i) {
-                                print(cubit.allDoctorList[i]["type"]);
                                 return DoctorsCard(
                                   title: title,
+                                  dateDays: cubit.allDoctorList[i]["Bookingdays"]!= null ?cubit.allDoctorList[i]["Bookingdays"]:[],
                                   Clinic: Clinic,
                                   id: cubit.DocotorsId[i],
                                   mapDoctor: cubit.allDoctorList[i],

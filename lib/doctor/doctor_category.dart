@@ -58,6 +58,7 @@ class AllDoctorsCategory extends StatelessWidget {
       }
     ];
     return BlocBuilder<DoctorCubit, MainDoctorState>(builder: (context, state) {
+      print(cubit.allDoctorList);
       return state is loadingState ? Scaffold(body: Center(child: CircularProgressIndicator(),),) : Scaffold(
         backgroundColor: Colors.grey.shade300,
         body: Clinic =="comfrt_care" ? AboutUsScreen(text: Lap,image: "image/comfrt_cover.jpg",)
@@ -84,6 +85,7 @@ class AllDoctorsCategory extends StatelessWidget {
                                 itemBuilder: (c, i) {
                                   print(cubit.allDoctorCategoryList[i]["type"]);
                                   return DoctorsCard(
+                                    dateDays: cubit.allDoctorList[i]["Bookingdays"]!= null ?cubit.allDoctorCategoryList[i]["Bookingdays"]:[],
                                     title: title,
                                     Clinic: Clinic,
                                     id: cubit.DocotorsId[i],
@@ -106,6 +108,7 @@ class AllDoctorsCategory extends StatelessWidget {
                                 itemBuilder: (c, i) {
                                   print(cubit.allDoctorCategoryList[i]["type"]);
                                   return DoctorsCard(
+                                    dateDays: cubit.allDoctorList[i]["Bookingdays"]!= null ?cubit.allDoctorCategoryList[i]["Bookingdays"]:[],
                                     title: title,
                                     Clinic: Clinic,
                                     id: cubit.DocotorsCategoryId[i],
