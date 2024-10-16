@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:confirt_care/main_screen/widget/clinic_card.dart';
+import 'package:confirt_care/main_screen/widget/clinic_card_gif.dart';
 import 'package:flutter/material.dart';
 import '../../Const/Class PhotoClinics.dart';
 import 'mobile_main_card.dart';
@@ -123,12 +124,13 @@ class HomeCarde extends StatelessWidget {
                               image: photoClinics.ComfortCare,
                               title: "وحدات اليود المشع",
                             )
-                          : ClinicCard(
-                              pio:
-                                  "وحدات متخصصة مرخصة من هيئة الإشراف على الأمراض النووية لحجز علاج الغدة الدرقية باليود المشع",
-                              image: photoClinics.ComfortCare,
-                              name: "وحدات اليود المشع",
-                            ),
+                          : ClinicCardGif(image: "image/e58b239e.gif", name:  "وحدات اليود المشع", pio: "وحدات متخصصة مرخصة من هيئة الإشراف على الأمراض النووية لحجز علاج الغدة الدرقية باليود المشع"),
+                      // ClinicCard(
+                      //         pio:
+                      //             "وحدات متخصصة مرخصة من هيئة الإشراف على الأمراض النووية لحجز علاج الغدة الدرقية باليود المشع",
+                      //         image: photoClinics.ComfortCare,
+                      //         name: "وحدات اليود المشع",
+                      //       ),
                       onTap: () {
                         context.beamToNamed('/Iodine_131');
                       },

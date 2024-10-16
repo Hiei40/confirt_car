@@ -66,7 +66,7 @@ class AllDoctors extends StatelessWidget {
     return BlocBuilder<DoctorCubit, MainDoctorState>(builder: (context, state) {
       return Scaffold(
         backgroundColor: Colors.grey.shade300,
-        body: Clinic =="comfrt_care" ? Iodine(text: Lap,image: "image/comfrt_cover.jpg",)
+        body: Clinic =="comfrt_care" ? Iodine(text: Lap,image: "image/e58b239e.gif",)
             :  SingleChildScrollView(
           child:Column(
             children: [

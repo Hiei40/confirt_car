@@ -51,6 +51,7 @@ dependencies:
   file_picker: ^8.0.7
   firebase_storage: ^11.7.7
   image_picker: ^1.1.2
+  gif: ^2.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

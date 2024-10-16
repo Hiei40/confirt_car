@@ -44,18 +44,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ClincsCubit()),
         BlocProvider(create: (context) => BlogCubit()),
       ],
-      // child: MaterialApp.router(
-      //   routerDelegate: routerDelegate,
-      //   routeInformationParser: BeamerParser(),
-      //   debugShowCheckedModeBanner: false,
-      //   backButtonDispatcher:
-      //   BeamerBackButtonDispatcher(delegate: routerDelegate),
-      //
-      // ),
-      child: MaterialApp(
-        home: LoginScreen(),
-    debugShowCheckedModeBanner: false,
+      child: MaterialApp.router(
+        routerDelegate: routerDelegate,
+        routeInformationParser: BeamerParser(),
+        debugShowCheckedModeBanner: false,
+        backButtonDispatcher:
+        BeamerBackButtonDispatcher(delegate: routerDelegate),
+
       ),
+    //   child: MaterialApp(
+    //     home: LoginScreen(),
+    // debugShowCheckedModeBanner: false,
+    //   ),
     );
   }
 }
