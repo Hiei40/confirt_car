@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Docotors/Docotors.dart';
+import '../pressintation/blog/choose_blog.dart';
 import 'Model/Clinc_Model.dart';
 import 'Widgets/ClincsContainer.dart';
 import 'cubit/cubit.dart';
@@ -27,7 +28,7 @@ class Home extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Blogs()
+                    builder: (context) => ChooseBlog()
                 ));
             },
             child: Text("blogs"),

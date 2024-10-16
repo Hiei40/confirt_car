@@ -7,10 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import '../blogmodel.dart';
+
 class BlogCubit extends Cubit<BlogMainState> {
   BlogCubit() : super(BlogInitState());
 
   static BlogCubit get(BuildContext context) => BlocProvider.of(context);
+ List<Blogmodel>blog=[];
+
   int index = 1;
 
   List<String> selectedImages = [];
@@ -98,5 +102,40 @@ class BlogCubit extends Cubit<BlogMainState> {
       });
 
   }
+
+
+Future<void>GetBlogsData()async{
+    emit(BlogLoading());
+    try{
+      Query<Map<String, dynamic>> blogsref=FirebaseFirestore.instance.collection("blogs").orderBy("timestamp",descending: true);
+      QuerySnapshot blogsdata=await blogsref.get();
+      blog=[];
+      for(var element in blogsdata.docs ){
+        blog.add(Blogmodel.fromJson(element.data()as Map<String,dynamic>));
+      }
+      emit(BlogSuccess());
+
+
+    }catch(e){
+      emit(BlogError("message"));
+
+
+    }
+
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
 
 }
