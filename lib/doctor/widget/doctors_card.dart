@@ -184,6 +184,7 @@ class DoctorsCard extends StatelessWidget {
                                                     color: Colors .white,
                                                   ),
                                                 ),
+
                                                 Text(
                                                   "${dateDays[i]}",
                                                   style: TextStyle(

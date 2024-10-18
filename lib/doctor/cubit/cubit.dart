@@ -14,7 +14,8 @@ class DoctorCubit extends Cubit<MainDoctorState> {
   List allDoctorList=[];
   List DocotorsId=[];
   List days=[];
-  List dateTimes=[];
+List dateTimes=[];
+  List Time=[];
   List allDoctorCategoryList=[];
   List DocotorsCategoryId=[];
   List <String> categoryList=[
@@ -57,18 +58,53 @@ class DoctorCubit extends Cubit<MainDoctorState> {
    print(profileMap);
     emit(ProfileState());
   }
-  allDoctors(String Clinic)async{
+  List datedoctor=[];
+  allDoctors(String Clinic) async {
     emit(loadingState());
     allDoctorList.clear();
     DocotorsId.clear();
-    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("doctors").get().then((value){
-     value.docs.forEach((v){
-       DocotorsId.add(v.id);
+    datedoctor.clear();  // Clear the datedoctor list before adding new data
 
-       allDoctorList.add(v.data());
-     });
+    await FirebaseFirestore.instance
+        .collection("clinics")
+        .doc(Clinic)
+        .collection("dd")
+        .get()
+        .then((value) {
+      value.docs.forEach((v) {
+        DocotorsId.add(v.id);
+
+        // Check if the Bookingdate field exists and process it
+        if (v.data()["Bookingdate"] != null) {
+          var bookingDates = v.data()["Bookingdate"];
+
+          // Iterate through each booking and treat date as a string
+          bookingDates.forEach((booking) {
+            if (booking["date"] != null && booking["date"] is String) {
+              // Since the date is already a string, just add it to the list
+              datedoctor.add(booking["date"]);
+            }
+          });
+          bookingDates.forEach((booking) {
+            if (booking["Time"] != null && booking["Time"] is String) {
+              // Since the date is already a string, just add it to the list
+              datedoctor.add(booking["date"]);
+            }
+          });
+          bookingDates.forEach((booking) {
+            if (booking["day"] != null && booking["day"] is String) {
+              // Since the date is already a string, just add it to the list
+              datedoctor.add(booking["date"]);
+            }
+          });
+        }
+
+        allDoctorList.add(v.data());
+      });
     });
-    // print(allDoctorList);
+
+    print("Doctor IDs: $DocotorsId");
+    print("Booking Dates: $datedoctor");
     emit(AllDoctorState());
   }
   allDoctorsCategory(String Clinic,type)async{
@@ -76,7 +112,7 @@ class DoctorCubit extends Cubit<MainDoctorState> {
     allDoctorCategoryList.clear();
     DocotorsCategoryId.clear();
     await FirebaseFirestore.instance.collection("clinics").doc(Clinic)
-        .collection("doctors").where("type",isEqualTo:type ).get().then((value){
+        .collection("dd").where("type",isEqualTo:type ).get().then((value){
       value.docs.forEach((v){
         if(v["type"]==type){
         DocotorsCategoryId.add(v.id);
@@ -91,7 +127,7 @@ class DoctorCubit extends Cubit<MainDoctorState> {
     emit(loadingState());
     await FirebaseFirestore.instance
         .collection("clinics").doc("slmtk").
-    collection("doctors").doc("4mgQvgVSIQRIoKGg8uxbUykMH6t1").get().then((value){
+    collection("dd").doc("4mgQvgVSIQRIoKGg8uxbUykMH6t1").get().then((value){
       doctorMap=value.data()!;
     });
     print(allDoctorList);
@@ -100,25 +136,46 @@ class DoctorCubit extends Cubit<MainDoctorState> {
 
   doctorsFetch(String Name,String Clinic, String Doctor,Map <String,dynamic>map)async{
     emit(loadingState());
-    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("doctors").doc(Doctor).collection("Booking").add(map);
+    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("dd").doc(Doctor).collection("Booking").add(map);
 
     print(allDoctorList);
     emit(DoctorState());
   }
-  doctorData(String Clinic, String Doctor)async{
+  doctorData(String Clinic, String Doctor) async {
     emit(DoctorLoadingState());
-    days=[];
-    dateTimes=[];
-    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("doctors").doc(Doctor).get().then((v){
-      doctorMap=v.data()!;
+    days = [];
+    dateTimes = [];
+    Time=[];
 
-      if(v.data()!["days"]!=null){
-      days=v.data()!["days"];
-      dateTimes=v.data()!["Booking date"];
+
+    await FirebaseFirestore.instance
+        .collection("clinics")
+        .doc(Clinic)
+        .collection("dd")
+        .doc(Doctor)
+        .get()
+        .then((v) {
+      doctorMap = v.data()!;
+
+      if (v.data() != null && v.data()!["Bookingdate"] != null) {
+        var bookingDates = v.data()!["Bookingdate"];
+        // Ensure that the "Bookingdate" is a list of maps
+        bookingDates.forEach((booking) {
+          if (booking["date"] != null) {
+            days.add(booking["date"]);
+          }
+          if (booking["Time"] != null) {
+            dateTimes.add(booking["Time"]);
+          }
+          if (booking["day"] != null) {
+            Time.add(booking["day"]);
+          }
+        });
       }
-      print(days);
+      print("Days: $days");
+      print("DateTimes: $dateTimes");
     });
-    print(allDoctorList);
+
     emit(DoctorDataState());
   }
   searchCubit(search)async{
@@ -126,7 +183,7 @@ class DoctorCubit extends Cubit<MainDoctorState> {
     if(search==""){
       searchList=[];
     }else{
-      await FirebaseFirestore.instance.collectionGroup("doctors")
+      await FirebaseFirestore.instance.collectionGroup("dd")
           .orderBy("name").startAt([search]).endAt([search + "\uf8ff"]).get().then((value) {
         searchList=[];
         value.docs.forEach((element) {
@@ -141,7 +198,7 @@ class DoctorCubit extends Cubit<MainDoctorState> {
     emit(loadingState());
     DoctorSearch.clear();
     DocotorsId.clear();
-    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("doctors").where("name",isEqualTo: Name).get().then((value){
+    await FirebaseFirestore.instance.collection("clinics").doc(Clinic).collection("dd").where("name",isEqualTo: Name).get().then((value){
       value.docs.forEach((v){
       if(Name==v["name"])
         DocotorsId.add(v.id);
