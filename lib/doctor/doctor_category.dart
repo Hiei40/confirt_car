@@ -91,7 +91,7 @@ class AllDoctorsCategory extends StatelessWidget {
                                     id: cubit.DocotorsId[i],
                                     mapDoctor: cubit.allDoctorCategoryList[i],
                                     mapProfile: cubit.profileMap,
-                                    days: cubit.allDoctorCategoryList[i]["days"]!= null ?cubit.allDoctorCategoryList[i]["days"]:[],
+                                    days: cubit.allDoctorCategoryList[i]["date"]!= null ?cubit.allDoctorCategoryList[i]["days"]:[],
                                     dateTimes:cubit.allDoctorCategoryList[i]["Booking date"]!= null ?cubit.allDoctorCategoryList[i]["Booking date"]:[],
                                   );
                                 }),
@@ -114,7 +114,7 @@ class AllDoctorsCategory extends StatelessWidget {
                                     id: cubit.DocotorsCategoryId[i],
                                     mapDoctor: cubit.allDoctorCategoryList[i],
                                     mapProfile: cubit.profileMap,
-                                    days: cubit.allDoctorCategoryList[i]["days"]!= null ?cubit.allDoctorCategoryList[i]["days"]:[],
+                                    days: cubit.allDoctorCategoryList[i]["date"]!= null ?cubit.allDoctorCategoryList[i]["days"]:[],
                                     dateTimes:cubit.allDoctorCategoryList[i]["Booking date"]!= null ?cubit.allDoctorCategoryList[i]["Booking date"]:[],
                                   );
                                 }),

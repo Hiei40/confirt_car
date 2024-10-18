@@ -95,7 +95,7 @@ class AllDoctors extends StatelessWidget {
                                     id: cubit.DocotorsId[i],
                                     mapDoctor: cubit.allDoctorList[i],
                                     mapProfile: cubit.profileMap,
-                                    days: cubit.allDoctorList[i]["days"]!= null ?cubit.allDoctorList[i]["days"]:[],
+                                    days: cubit.allDoctorList[i]["date"]!= null ?cubit.allDoctorList[i]["date"]:[],
                                     dateTimes:cubit.allDoctorList[i]["Booking date"]!= null ?cubit.allDoctorList[i]["Booking date"]:[],
                                   );
                                 }),
