@@ -15,6 +15,10 @@ class BlogLoading extends BlogMainState {}
 
 class BlogSuccess extends BlogMainState {}
 
+class SingleBlog extends BlogMainState {}
+
+class SingleBlogLoading extends BlogMainState {}
+
 class BlogError extends BlogMainState {
   final String message;
   BlogError(this.message);

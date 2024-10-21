@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:confirt_care/pressintation/blog/blogdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,10 +36,7 @@ class ReadAllBlogs extends StatelessWidget {
                         Blogmodel blogmodel = context.read<BlogCubit>().blog[index];
                         return GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Blogdetails(
-                                  blogmodel: blogmodel,
-                                )));
+                            context.beamToNamed("/blogs/${context.read<BlogCubit>().blogIdList[index]}");
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -100,10 +98,7 @@ class ReadAllBlogs extends StatelessWidget {
                         Blogmodel blogmodel = context.read<BlogCubit>().blog[index];
                         return GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Blogdetails(
-                                  blogmodel: blogmodel,
-                                )));
+                            context.beamToNamed("/blogs/${context.read<BlogCubit>().blogIdList[index]}");
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

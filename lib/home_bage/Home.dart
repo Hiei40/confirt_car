@@ -1,8 +1,10 @@
+import 'package:beamer/beamer.dart';
 import 'package:confirt_care/pressintation/Docotors/BookingScreen.dart';
 import 'package:confirt_care/pressintation/blog/blogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../Const/Class PhotoClinics.dart';
 import '../Docotors/Docotors.dart';
 import '../pressintation/blog/choose_blog.dart';
 import 'Model/Clinc_Model.dart';
@@ -12,7 +14,6 @@ import 'cubit/state.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
-
   @override
   Widget build(BuildContext context) {
     ClincsCubit cubit = ClincsCubit.get(context);
@@ -25,11 +26,7 @@ class Home extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ChooseBlog()
-                ));
+               context.beamToNamed('/main_blogs');
             },
             child: Text("blogs"),
           )
@@ -38,30 +35,41 @@ class Home extends StatelessWidget {
       body: BlocBuilder<ClincsCubit, ClincsState>(
         builder: (context, state) {
           return Container(
-            child: ListView.builder(
-                itemCount: cubit.Clinc.length,
-                itemBuilder: (context, index) {
-                  Clinics clinics = cubit.Clinc[index];
-                  cubit.id;
-                  print(cubit.id[index]);
-                  return ClincsContainer2(
-                    photoUrl: clinics.photo,
-                    ClincName: clinics.name,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookingScreen(
-                                  Name: "",
-                                )),
-                      );
-                    },
-                    id: '',
-                  );
-                }),
+            child:Column(
+          children: [
+          ClincsContainer2(
+          photoUrl: photoClinics.salamtak,
+            ClincName: "عيادة سلامتك",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BookingScreen(
+                      Name: "",
+                    )),
+              );
+            },
+            id: '',
+          ),
+            ClincsContainer2(
+              photoUrl: photoClinics.BeautyClinicAcademy,
+              ClincName: "عيادات بيوتي اكاديمي",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookingScreen(
+                        Name: "",
+                      )),
+                );
+              },
+              id: '',
+            ),
+
+          ],
+          ),
           );
-        },
-      ),
-    );
-  }
+  }));
+
+}
 }

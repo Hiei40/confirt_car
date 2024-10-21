@@ -54,13 +54,13 @@ class AllDoctors extends StatelessWidget {
         "title": "تأكيد أمان العلاج باليود المشع",
         "text": "معظم الحالات المرضية فإن المريض بحاجة إلى جرعة واحدة فقط، والتي بعدها يتم متابعة تأثيرها.\nخلال بضعة أسابيع إلى أشهر، ثم بعدها يجري المريض بعض الفحوصات والتحاليل وصور الغدة الدرقية لتحديد جرعة ثانية من اليود المشع، لكن ليس قبل مدة 6 شهور على الأقل من الجرعة الأولى.\n"
       },{
-      "title":"الآثار الجانبية والاحتياطات للعلاج باليود المشع؟",
+        "title":"الآثار الجانبية والاحتياطات للعلاج باليود المشع؟",
         "text":"تعتبر كبسولة اليود المشع ليست لها طعم أو رائحة سيئة؛ حيث أن المصاب لا يشعر بأي شيء أثناء العلاج.\nوهو مختلف تمامًا عن طرق العلاج الكيميائي الأخرى، حيث لا يحدث تساقط الشعر أثناء العلاج.\nكما أن الآثار الجانبية المعدية نادرة حدوثها.\nكما يتم تقديم بعض التوصيات لتجنب الآثار الخطيرة للعلاج على الغدة.\nبما في ذلك، يضمن شرب السوائل الوفيرة والاستحمام اليومي أن الإشعاع يفرز من خلال سوائل الجسم.\nلا يُسمح لأي مريض بالزيارة أثناء العلاج النشط وتتم تلبية جميع احتياجات المريض من قبل موظفي الرعاية الصحية.\n"
       },{
-    "title":"الآثار الجانبية والاحتياطات للعلاج باليود المشع؟",
-    "text":"سعر جرعة اليود المشع\nأسعار اليود المشع 2023 تتراوح سعر الجرعة من 8000 جنيه إلى 20000 جنيه.\nوتحدد جرعة اليود المشع من طبيب الأشعة بالتعاون مع طبيب الغدد الصماء.\nوحرصًا على سلامة المريض يجب عدم تناول أي طعام يحتوي على يود قبل إجراء العملية.\n",
-  }
-  ];
+        "title":"الآثار الجانبية والاحتياطات للعلاج باليود المشع؟",
+        "text":"سعر جرعة اليود المشع\nأسعار اليود المشع 2023 تتراوح سعر الجرعة من 8000 جنيه إلى 20000 جنيه.\nوتحدد جرعة اليود المشع من طبيب الأشعة بالتعاون مع طبيب الغدد الصماء.\nوحرصًا على سلامة المريض يجب عدم تناول أي طعام يحتوي على يود قبل إجراء العملية.\n",
+      }
+    ];
     List<DateTime> daysInCurrentMonth = getDaysInCurrentMonth();
 
     return BlocBuilder<DoctorCubit, MainDoctorState>(builder: (context, state) {
@@ -100,30 +100,30 @@ class AllDoctors extends StatelessWidget {
                                   );
                                 }),
                           ):
-                      Container(
-                          width: 1200,
-                          height:cubit.allDoctorList.isEmpty? 700:cubit.allDoctorList.length * 302.3,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                              itemCount: cubit.allDoctorList.length,
-                              itemBuilder: (c, i) {
-                                return DoctorsCard(
-                                  title: title,
-                                  dateDays: cubit.allDoctorList[i]["Bookingdays"]!= null ?cubit.allDoctorList[i]["Bookingdays"]:[],
-                                  Clinic: Clinic,
-                                  id: cubit.DocotorsId[i],
-                                  mapDoctor: cubit.allDoctorList[i],
-                                  mapProfile: cubit.profileMap,
-                                  days: cubit.allDoctorList[i]["days"]!= null ?cubit.allDoctorList[i]["days"]:[],
+                          Container(
+                            width: 1200,
+                            height:cubit.allDoctorList.isEmpty? 700:cubit.allDoctorList.length * 302.3,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: cubit.allDoctorList.length,
+                                itemBuilder: (c, i) {
+                                  return DoctorsCard(
+                                    title: title,
+                                    dateDays: cubit.datedoctor!= null ?cubit.datedoctor:[],
+                                    Clinic: Clinic,
+                                    id: cubit.DocotorsId[i],
+                                    mapDoctor: cubit.allDoctorList[i],
+                                    mapProfile: cubit.profileMap,
+                                    days: cubit.allDoctorList[i]["days"]!= null ?cubit.allDoctorList[i]["days"]:[],
                                     dateTimes:cubit.allDoctorList[i]["Booking date"]!= null ?cubit.allDoctorList[i]["Booking date"]:[],
-                                );
-                              }),
-                        );
-                      }
+                                  );
+                                }),
+                          );
+                        }
                     ),
                   ),
                 ],

@@ -21,7 +21,28 @@ class BlogCubit extends Cubit<BlogMainState> {
   List<String> imageUrls = [];
   List<String> blogTitles = [];
   List<String> blogContents = [];
+  Map singleBlog={};
+  List blogTitleList = [];
+  List blogBodyList = [];
+  List imageList = [];
+  List blogIdList = [];
+  BlogMainState(id)async{
+    emit(SingleBlogLoading());
+    singleBlog={};
+    blogTitleList.clear();
+    blogBodyList.clear();
+    await FirebaseFirestore.instance.collection('blogs').doc(id).get().then((v){
+      singleBlog=v.data()!;
+      blogTitleList=v.data()!["blogTitles"];
+      blogBodyList=v.data()!["blogContents"];
+      imageList=v.data()!["imageUrls"];
 
+    });
+    print("blog cont ${blogBodyList}");
+    print("blog title ${blogTitleList}");
+    print(imageList);
+    emit(SingleBlog());
+  }
   void cont() {
     if (index < 20) {
       index += 1;
@@ -109,6 +130,11 @@ Future<void>GetBlogsData()async{
     try{
       Query<Map<String, dynamic>> blogsref=FirebaseFirestore.instance.collection("blogs").orderBy("timestamp",descending: true);
       QuerySnapshot blogsdata=await blogsref.get();
+      blogsref.get().then((onValue){
+        onValue.docs.forEach((v){
+          blogIdList.add(v.id);
+        });
+      });
       blog=[];
       for(var element in blogsdata.docs ){
         blog.add(Blogmodel.fromJson(element.data()as Map<String,dynamic>));

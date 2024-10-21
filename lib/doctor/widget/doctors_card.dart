@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import '../ClientBookingScreen.dart';
 import '../DoctorProfile.dart';
@@ -35,16 +36,10 @@ class DoctorsCard extends StatelessWidget {
                   ProfileInfo: mapProfile,
                     title:title
                 ),
-              ));}else{
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProfileDoctor(
-                  IDDoctor: id,
-                  clinic: Clinic,
-                  DoctorInfo: mapDoctor,
-                    title:title
-
-                ),
-              ));
+              ));}else if(Clinic=="slmtk"){
+              context.beamToNamed('/slamtk_doctor/$id');
+            }else{
+              context.beamToNamed('/beutyacademyclinics_doctors/$id');
             }
           },
           child: Padding(
@@ -169,7 +164,8 @@ class DoctorsCard extends StatelessWidget {
                                               IDDoctor: id,
                                               clinic: Clinic,
                                               DoctorInfo: mapDoctor,
-                                              date:"",
+                                              date:DateTime.now(),
+                                              bookingDate: dateDays[i],
                                             ),
                                       ));                                    },
                                     child: Container(
@@ -189,6 +185,7 @@ class DoctorsCard extends StatelessWidget {
                                                   "${dateDays[i]}",
                                                   style: TextStyle(
                                                     color: Colors .white,
+
                                                   ),                                                ),
                                               ],
                                             ),
@@ -253,17 +250,12 @@ class DoctorsCard extends StatelessWidget {
                       ProfileInfo: mapProfile,
                       title:title
                   ),
-                ));}else{
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProfileDoctor(
-                      IDDoctor: id,
-                      clinic: Clinic,
-                      DoctorInfo: mapDoctor,
-                      title:title
-
-                  ),
-                ));
+                ));} if(Clinic=="slmtk"){
+                context.beamToNamed('/slamtk_doctor/$id');
+              }else{
+                context.beamToNamed('/beutyacademyclinics_doctors/$id');
               }
+
             },
             child: Padding(
               padding: const EdgeInsets.only(bottom: 20.0),
@@ -336,7 +328,8 @@ class DoctorsCard extends StatelessWidget {
                                                         IDDoctor: id,
                                                         clinic: Clinic,
                                                         DoctorInfo: mapDoctor,
-                                                        date:"",
+                                                        date:DateTime.now(),
+                                                        bookingDate: dateDays[i],
                                                       ),
                                               ));
                                             },

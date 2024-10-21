@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +7,7 @@ import 'DoctorProfile.dart';
 import '../auth/login_screen.dart';
 import '../auth/sign_up.dart';
 import '../main_screen/main_bage.dart';
+import 'course.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
 
@@ -166,11 +168,22 @@ final String Clinic;
                               itemCount: cubit.DoctorSearch.length,
                               itemBuilder: (c,i){
                                 return InkWell(
-                                  onTap: (){
+                                  onTap: () {
+                                    if(Clinic=="bu_cdimy"){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => CoursePage(
+                                            IDDoctor: cubit.DocotorsId[i],
+                                            clinic: Clinic,
+                                            DoctorInfo: cubit.DoctorSearch[i],
+                                            ProfileInfo: cubit.DoctorSearch[i],
+                                            title:Clinic,
+                                        ),
+                                      ));}else if(Clinic=="slmtk"){
+                                      context.beamToNamed('/slamtk_doctor/${cubit.DocotorsId[i]}');
+                                    }else{
+                                      context.beamToNamed('/beutyacademyclinics_doctors/${cubit.DocotorsId[i]}');
+                                    }
 
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>  ProfileDoctor(IDDoctor:cubit.DocotorsId[i], clinic: Clinic, DoctorInfo: cubit.allDoctorList[i], title:""),
-                                    ));
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 20.0),

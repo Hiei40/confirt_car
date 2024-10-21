@@ -67,7 +67,7 @@ class BookingScreen extends StatelessWidget {
                   //     "Date: ${DateFormat('EEE, MMM d, yyyy HH:mm').format(
                   //         cubit.Book[index]["Date"])}"),
                   subtitle: Text(
-                      "Date:}"),
+                      "Date:${cubit.Book[index]["Date"]}"),
                 );
               },
                separatorBuilder: (BuildContext context, int index) {

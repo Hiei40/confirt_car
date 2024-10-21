@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:confirt_care/pressintation/blog/component/blog_container.dart';
 import 'package:confirt_care/pressintation/blog/read_all_blogs.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class ChooseBlog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Blogscreen=[Blogs(),ReadAllBlogs()];
+    List Blogscreen=["/add_blogs","/all_blogs"];
     List<String> Blogstext=["Write Blogs","read All Blogs"];
     return Scaffold(
 
@@ -18,7 +19,7 @@ class ChooseBlog extends StatelessWidget {
         child: ListView.builder(itemBuilder:  (BuildContext context, int index) {
     return  BlogContainer(ClincName: Blogstext[index],
     onTap: (){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Blogscreen[index]));
+      context.beamToNamed(Blogscreen[index]);
 
 
     }

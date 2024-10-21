@@ -14,13 +14,15 @@ class ClientBookingScreen extends StatelessWidget {
         required this.clinic,
         required this.DoctorInfo,
         required this.date,
+        required this.bookingDate,
+
       });
 
   final String IDDoctor;
   final String clinic;
   final Map DoctorInfo;
-  final String date;
-
+  final DateTime date;
+  final String bookingDate;
   final _formKey = GlobalKey<FormState>(); // GlobalKey for form validation
   TextEditingController nameController = TextEditingController();
   TextEditingController BookingController = TextEditingController();
@@ -257,7 +259,7 @@ class ClientBookingScreen extends StatelessWidget {
                                   flex: 6,
                                   child: SizedBox(
                                     width: 380,
-                                    child:date==""? Text(""):Text(date),
+                                    child:date==""? Text(""):Text(""),
                                   ),
                                 ),
                                 const SizedBox(
@@ -278,8 +280,8 @@ class ClientBookingScreen extends StatelessWidget {
                               if (_formKey.currentState!.validate()) {
                                 await cubit.doctorsFetch(
                                     DoctorInfo["name"], clinic, IDDoctor, {
-                                  "Date": DateTime.now(),
-                                  "BookingDate": BookingController.text,
+                                  "Date": bookingDate,
+                                  "BookingDate": date.hour,
                                   "DoctorName": DoctorInfo["name"],
                                   "Name": nameController.text,
                                   "Number": DoctorInfo["number"],

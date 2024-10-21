@@ -173,10 +173,10 @@ List dateTimes=[];
         });
       }
       print("Days: $days");
-      print("DateTimes: $dateTimes");
+      print("DateTimes: $dateTimes") ;
     });
 
-    emit(DoctorDataState());
+    emit(SingleDoctorsState());
   }
   searchCubit(search)async{
     emit(EmptyState());

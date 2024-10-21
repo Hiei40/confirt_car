@@ -75,11 +75,7 @@ class MainAppBar extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ReadAllBlogs()
-                            ));
+                        context.beamToNamed('/all_blogs');
                       },
                       child: Text("blogs      ",
                         style: TextStyle(

@@ -13,4 +13,5 @@ class SearchDoctorState extends MainDoctorState {}
 class CategoryDrobDownState extends MainDoctorState {}
 class AllDoctorCategoryState extends MainDoctorState {}
 class DoctorLoadingState extends MainDoctorState {}
+class SingleDoctorsState extends MainDoctorState {}
 

@@ -1,10 +1,15 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import '../auth/LoginLayerCheck.dart';
+import '../doctor/DoctorProfile.dart';
 import '../doctor/all_doctors.dart';
 import '../main_screen/Contactus.dart';
 import '../main_screen/about_us_screen.dart';
 import '../main_screen/bu_acdimy.dart';
+import '../pressintation/blog/blogdetails.dart';
+import '../pressintation/blog/blogs.dart';
+import '../pressintation/blog/choose_blog.dart';
+import '../pressintation/blog/read_all_blogs.dart';
 class HomeLocation extends BeamLocation<BeamState> {
   @override
   List<Map<String, String>> visionMissionValues = [
@@ -60,6 +65,53 @@ class HomeLocation extends BeamLocation<BeamState> {
         ),
       );
     }
+    if (state.uri.pathSegments.contains('add_blogs')) {
+      pathPatterns.add(
+        BeamPage(
+          key: const ValueKey('add_blogs'),
+          child: Blogs(),
+        ),
+      );
+    }
+    final String? slmtlDoc = state.pathParameters['slamtk_doctor'];
+    if (slmtlDoc!=null) {
+      pathPatterns.add(
+        BeamPage(
+          key:  ValueKey('slamtk_doctor/$slmtlDoc'),
+          child: ProfileDoctor(
+            IDDoctor: slmtlDoc,
+            clinic: "slmtk",
+            title: "عيادات سلمتك",
+          ),
+        ),
+      );
+    }
+    final String? butelDoc = state.pathParameters['beutyacademyclinics_doctors'];
+    if (butelDoc!=null) {
+      pathPatterns.add(
+        BeamPage(
+          key:  ValueKey('beutyacademyclinics_doctors/$butelDoc'),
+          child:ProfileDoctor(
+              IDDoctor: butelDoc,
+              clinic: "beutyacademyclinics",
+              title: "عيدات بيوتي",
+
+          ),
+        ),
+      );
+    }
+    final String? blogDoc = state.pathParameters['blogs'];
+    if (blogDoc!=null) {
+      pathPatterns.add(
+        BeamPage(
+          key:  ValueKey('blogs/$blogDoc'),
+          child:Blogdetails(
+            blogId:blogDoc,
+          ),
+        ),
+      );
+    }
+
     if (state.uri.pathSegments.contains('about_us')) {
       pathPatterns.add(
         BeamPage(
@@ -76,7 +128,22 @@ class HomeLocation extends BeamLocation<BeamState> {
         ),
       );
     }
-
+    if (state.uri.pathSegments.contains('main_blogs')) {
+      pathPatterns.add(
+        BeamPage(
+          key: const ValueKey('main_blogs'),
+          child:ChooseBlog(),
+        ),
+      );
+    }
+    if (state.uri.pathSegments.contains('all_blogs')) {
+      pathPatterns.add(
+        BeamPage(
+          key: const ValueKey('all_blogs'),
+          child:ReadAllBlogs(),
+        ),
+      );
+    }
     return pathPatterns;
   }
   @override
@@ -88,6 +155,12 @@ class HomeLocation extends BeamLocation<BeamState> {
     '/contact_us',
     '/beutyacademytraining',
     "/salamtkclinics",
+    "slamtk_doctor/:slamtk_doctor",
+    "/add_blogs",
+    "/all_blogs",
     "/beutyacademyclinics",
+    "/blogs/:blogs",
+    "/main_blogs",
+    "beutyacademyclinics_doctors/:beutyacademyclinics_doctors",
   ];
 }
